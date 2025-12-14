@@ -194,7 +194,7 @@ a:hover {
 
 .btn-color-1:hover {
     /* Darken primary button on hover (Yankees Blue) */
-    background-color: var(--color-yankees-blue);
+    background-color: var(--color-pewter-blue);
     color: var(--color-secondary);
     border: 2px solid var(--color-columbia-blue);
     transform: scale(1.05);
