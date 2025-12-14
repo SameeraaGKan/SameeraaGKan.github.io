@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sameeraa Portfolio</title>
+        <title>Sameeraa Kandalgaonkar Portfolio</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
         <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="mediaqueries.css">
+        <link rel="stylesheet" href="mediaqueries.css"> 
     </head>
     <body>
-        <!-- This section is to set up the hero page and the nav bar of the website -->
-        <nav id="desktop-nav">
-            
+        <nav id="desktop-nav" class="glass-nav">
+            <div class="logo">
+                <a href="#profile">SK</a>
+            </div>
             <div>
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
@@ -21,16 +25,16 @@
                 </ul>
             </div>
         </nav>
-        <!-- This section is to create the collapsible hamburger menu when the screen size is less than 1200px -->
+        
         <nav id="hamburger-nav">
             <div class="logo">
-                S
+                <a href="#profile">S.K.</a>
             </div>
             <div class="hamburger-menu">
                 <div class="hamburger-icon" onclick="toggleMenu()">
-                     <span></span>
-                     <span></span>
-                     <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
                 <div class="menu-links">
                     <li><a href="#about" onclick="toggleMenu()">About</a></li>
@@ -40,273 +44,264 @@
                 </div>
             </div>
         </nav>
-        <!-- this section is used to set up the profile of the user -->
-        <section id="profile">
-            <img src="./assets/cloud.png" alt="cloud" class="cloud cloud-left">
-            <img src="./assets/cloud.png" alt="cloud" class="cloud cloud-right">
-            <!-- <div class="section__pic-container">
-                <img src="./assets/profile-pic-circ.png" alt="profile pic"/>
-            </div> -->
-            <div class="section__text">
-                
-                <p class="section__text__p1" style="font-weight:500;">Hello, I'm</p>
-                
-                <h1 class="title" style="font-size: 6rem; margin-top: -1rem;">Sameeraa K</h1>
-                
-                <p class="section__text__p2" style="font-weight: 400;">Full Stack developer</p>
-                <div class="btn-container">
-                    <button class="btn btn-color-2" onclick="window.open('./assets/CV 1 page.pdf')">
-                        Download CV
-                    </button>
-
-                    <button class="btn btn-color-1" onclick="location.href = './#contact'">
-                        Contact Info
-                    </button>
-
-                    
-                </div>
-                <div id="socials-container">
-                    <img src="./assets/linkedin.png" alt="linkedin" 
-                    class="icon" 
-                    onclick="window.open('https://www.linkedin.com/in/sameeraakan118/', '_blank')"
-                    onKeyPress="window.open('https://www.linkedin.com/in/sameeraakan118/', '_blank')">
-                    
-                    <img src="./assets/github.png" alt="github"
-                     class="icon" 
-                     onclick="window.open('https://github.com/SameeraaGKan', '_blank')"
-                     onKeyPress="window.open('https://github.com/SameeraaGKan', '_blank')">
-                    
-                </div>
-                <img src="./assets/cloud.png" alt="cloud" class="cloud cloud-left">
-            <img src="./assets/cloud.png" alt="cloud" class="cloud cloud-right">
-            </div>
-            <img src="./assets/arrow.png" alt="arrow icon" class="icon arrow" onclick="location.href = './#about'" onKeyPress="location.href = './#about'">
-        </section>
-        <!-- This section is set up the about section of the user -->
-        <section id="about">
-            <img src="./assets/cloud.png" alt="cloud" class="cloud cloud-left">
-            <img src="./assets/cloud.png" alt="cloud" class="cloud cloud-right">
-            
-            <h2 class="title"><p class="section__text__p1" style="font-size: 2rem;">Get To Know More</p>About Me</h2>
-            <div class="sections-container">
-                <!-- <div class="section__pic-container1">
-                    <img src="./assets/profile-pic-2.jpg" alt="About pic" class="about-pic">
-                </div> -->
-                <div class="about-details-container">
-                    <div class="about-containers">
-                        <div class="details-container">
-                            <img src="./assets/experience.png" alt="Experience icon" class="icon">
-                            <h3>Experience</h3>
-                            <p style="padding-top:5px;">Backend and Frontend development</p>
-                        </div>
-                        <div class="details-container">
-                            <img src="./assets/education.png" alt="education icon" class="icon">
-                            <h3>Education</h3>
-                            <p> Plano West Senior High School <br> B.Sc. Computer Science - University of Texas at Dallas</p>
-                        </div>
-                    </div>
-                    <div class="text-container">
-                        <p style="font-size: 1.5rem; font-weight: 300;">As a highly motivated rising sophomore in the Computer Science department at UTD, I am committed to leveraging my skills and knowledge to make a positive impact on the community. I am passionate about technology and driven by a desire to contribute meaningfully through innovative solutions and collaborative efforts.</p>
-                    </div>
-                    
-                </div>
-            </div>
-            <img src="./assets/cloud.png" alt="cloud" class="cloud cloud-left">
-            <img src="./assets/cloud.png" alt="cloud" class="cloud cloud-right">
-            <img src="./assets/arrow.png" alt="arrow icon" class="icon arrow" onclick="location.href = './#experience'" onKeyPress="location.href = './#experience'">
-        </section>
-        <!-- This is where we use article s tag to make an experience for the user  -->
-        <section id="experience">
-
-            <img src="./assets/cloud.png" alt="cloud" class="cloud cloud-left">
-            <img src="./assets/cloud.png" alt="cloud" class="cloud cloud-right">
-            <h2 class="title"><p class="section__text__p1" style="font-size: 2rem;">Explore my</p>Experience</h2>
-            <div class="experience-details-container">
-                <div class="about-containers">
-                    <div class="details-container">
-                        <h2 class="experience-sub-title">Full Stack development</h2>
-                        <div class="article-container">
-                            <article>
-                                <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
-                                <div>
-                                    <h3>C++</h3>
-                                    <p>Inteme</p>
-                                </div>
-                            </article>
-
-                            <article>
-                                <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
-                                <div>
-                                    <h3>C</h3>
-                                    <p>Basic</p>
-                                </div>
-                            </article>
-
-                            <article>
-                                <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
-                                <div>
-                                    <h3>Java</h3>
-                                    <p>Experienced</p>
-                                </div>
-                            </article>
-
-                            <article>
-                                <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
-                                <div>
-                                    <h3>Python</h3>
-                                    <p>Experienced</p>
-                                </div>
-                            </article>
-
-                            <article>
-                                <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
-                                <div>
-                                    <h3>HTML</h3>
-                                    <p>Experienced</p>
-                                </div>
-                            </article>
-
-                            <article>
-                                <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
-                                <div>
-                                    <h3>CSS</h3>
-                                    <p>Experienced</p>
-                                </div>
-                            </article>                            
-                                                         
-                        </div>
-                    </div>
-                    <div class="details-container">
-                        <h2 class="experience-sub-title">Full Stack development</h2>
-                        <div class="article-container">
-                            <article>
-                                <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
-                                <div>
-                                    <h3>React.js</h3>
-                                    <p>Basic</p>
-                                </div>
-                            </article>
-
-                            <article>
-                                <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
-                                <div>
-                                    <h3>Django</h3>
-                                    <p>Basic</p>
-                                </div>
-                            </article>
-
-                            <article>
-                                <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
-                                <div>
-                                    <h3>Node JS</h3>
-                                    <p>Basic</p>
-                                </div>
-                            </article>
-
-                            <article>
-                                <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
-                                <div>
-                                    <h3>Erpress JS</h3>
-                                    <p>Basic</p>
-                                </div>
-                            </article>
-
-                            <article>
-                                <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
-                                <div>
-                                    <h3>GitHub</h3>
-                                    <p>Intermediate</p>
-                                </div>
-                            </article> 
-                            <article>
-                                <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
-                                <div>
-                                    <h3>JavaScript</h3>
-                                    <p>Basic</p>
-                                </div>
-                            </article>                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <img src="./assets/cloud.png" alt="cloud" class="cloud cloud-left">
-            <img src="./assets/cloud.png" alt="cloud" class="cloud cloud-right">
-            <img src="./assets/arrow.png" alt="arrow icon" class="icon arrow" onclick="location.href = './#projects'" onKeyPress="location.href = './#projects'">
-        </section>
-
-
-        <section id="projects">
-
-            <img src="./assets/cloud.png" alt="cloud" class="cloud cloud-left">
-            <img src="./assets/cloud.png" alt="cloud" class="cloud cloud-right">
-            <h2 class="title" style="margin-top: 0;"><p class="section__text__p1" style="font-size: 2rem;">
-                Browse My Recent </p> Projects</h2> 
-            <div class="experience-details-container">
-            <div class="about-containers">
-                <div class="details-container color-container">
-                    <div class="article-container">
-                        <img src="./assets/project-1.png" alt="Project 1" class="project-img">
-                    </div>
-                    <h2 class="experience-sub-title project-title">Project One</h2>
-                    <div class="btn-container">
-                        <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/SameeraaGKan'">GitHub</button>
-                        <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/SameeraaGKan'">Live Demo</button>
-                    </div>
-                </div>
-                <div class="details-container color-container">
-                    <div class="article-container">
-                        <img src="./assets/project-2.png" alt="Project 2" class="project-img">
-                    </div>
-                    <h2 class="experience-sub-title project-title">Project Two</h2>
-                    <div class="btn-container">
-                        <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/SameeraaGKan'">GitHub</button>
-                        <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/SameeraaGKan'">Live Demo</button>
-                    </div>
-                </div>
-                <div class="details-container color-container">
-                    <div class="article-container">
-                        <img src="./assets/project-3.png" alt="Project 1" class="project-img">
-                    </div>
-                    <h2 class="experience-sub-title project-title">Project Three</h2>
-                    <div class="btn-container">
-                        <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/SameeraaGKan'">GitHub</button>
-                        <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/SameeraaGKan'">Live Demo</button>
-                    </div>
-                </div>
-            </div>
-            </div>
-            
-            <img src="./assets/arrow.png" alt="arrow icon" class="icon arrow" onclick="location.href = './#contact'" onKeyPress="location.href = './#contact'">
         
-            <img src="./assets/cloud.png" alt="cloud" class="cloud cloud-left">
-            <img src="./assets/cloud.png" alt="cloud" class="cloud cloud-right">
-        </section>
+        <main>
+            <section id="profile" class="section-padding">
+                <div class="glass-container profile-container">
+                    <div class="section__text">
+                        <p class="section__text__p1">Hello, I'm</p>
+                        <h1 class="title">Sameeraa Kandalgaonkar</h1>
+                        <p class="section__text__p2">Computer Science Student</p>
+                        <div class="btn-container">
+                            <button class="btn btn-color-2" onclick="window.open('./assets/SameeraaKandalgaonkarResume.pdf')">
+                                Download Resume
+                            </button>
+                            <button class="btn btn-color-1" onclick="location.href = './#contact'">
+                                Contact Info
+                            </button>
+                        </div>
+                        <div id="socials-container">
+                            <img src="./assets/linkedin.png" alt="LinkedIn" 
+                            class="icon" 
+                            onclick="window.open('https://www.linkedin.com/in/sameeraakan118/', '_blank')"
+                            onKeyPress="window.open('https://www.linkedin.com/in/sameeraakan118/', '_blank')">
+                            
+                            <img src="./assets/github.png" alt="GitHub"
+                            class="icon" 
+                            onclick="window.open('https://github.com/SameeraaGKan', '_blank')"
+                            onKeyPress="window.open('https://github.com/SameeraaGKan', '_blank')">
+                        </div>
+                    </div>
+                </div>
+                <!-- <img src="./assets/arrow.png" alt="arrow icon" class="icon arrow" onclick="location.href = './#about'" onKeyPress="location.href = './#about'"> -->
+            </section>
+
+            <section id="about" class="section-padding">
+                <h2 class="title-main"><p class="section__text__p1">Get To Know More</p>About Me</h2>
+                <div class="sections-container">
+                    <div class="about-details-container">
+                        <div class="about-containers">
+                            <div class="details-container glass-container">
+                                <img src="./assets/experience.png" alt="Experience icon" class="icon">
+                                <h3>Experience</h3>
+                                <p>Software Engineering Intern (Fall 2024) <br> Undergraduate Researcher</p>
+                            </div>
+                            <div class="details-container glass-container">
+                                <img src="./assets/education.png" alt="education icon" class="icon">
+                                <h3>Education</h3>
+                                <p>B.S. Computer Science <br> Minor in Business Administration <br>The University of Texas at Dallas</p>
+                            </div>
+                        </div>
+                        <div class="text-container glass-container">
+                            <p>
+                                  I am currently pursuing a Bachelor of Science in Computer Science with a Minor in Business Administration at the University of Texas at Dallas. 
+                                  My coursework includes Advanced Data Structures & Algorithmic analysis, Computer Architecture, Systems Programming in UNIX, and Programming Fundamentals. 
+                                  I have hands-on experience in scalable cloud solutions, software design, development, testing, and deployment in a public cloud environment. 
+                                  I am passionate about leveraging technology to solve problems and contribute to organizational goals through collaborative development and design.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- <img src="./assets/arrow.png" alt="arrow icon" class="icon arrow" onclick="location.href = './#experience'" onKeyPress="location.href = './#experience'"> -->
+            </section>
+
+            <section id="experience" class="section-padding">
+                <h2 class="title-main"><p class="section__text__p1">Explore my</p>Technical Skills</h2>
+                <div class="experience-details-container">
+                    <div class="about-containers">
+                        
+                        <div class="details-container glass-container">
+                            <h2 class="experience-sub-title">Programming Languages</h2>
+                            <div class="article-container">
+                                <article>
+                                    <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
+                                    <div><h3>C++</h3><p>Proficient</p></div>
+                                </article>
+                                <article>
+                                    <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
+                                    <div><h3>Python</h3><p>Proficient</p></div>
+                                </article>
+                                <article>
+                                    <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
+                                    <div><h3>JavaScript</h3><p>Proficient</p></div>
+                                </article>
+                                <article>
+                                    <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
+                                    <div><h3>HTML</h3><p>Proficient</p></div>
+                                </article>
+                                <article>
+                                    <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
+                                    <div><h3>CSS</h3><p>Proficient</p></div>
+                                </article>
+                                <article>
+                                    <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
+                                    <div><h3>C</h3><p>Familiar</p></div>
+                                </article>
+                            </div>
+                        </div>
+                        
+                        <div class="details-container glass-container">
+                            <h2 class="experience-sub-title">Frameworks & Tools</h2>
+                            <div class="article-container">
+                                <article>
+                                    <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
+                                    <div><h3>React.js</h3><p>Intermediate</p></div>
+                                </article>
+                                <article>
+                                    <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
+                                    <div><h3>Node.js</h3><p>Basic</p></div>
+                                </article>
+                                <article>
+                                    <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
+                                    <div><h3>Tailwind CSS</h3><p>Intermediate</p></div>
+                                </article>
+                                <article>
+                                    <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
+                                    <div><h3>Figma</h3><p>Intermediate</p></div>
+                                </article>
+                                <article>
+                                    <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
+                                    <div><h3>Microsoft Azure</h3><p>Familiar</p></div>
+                                </article>
+                                <article>
+                                    <img src="./assets/checkmark.png" alt="experience icon" class="icon"/>
+                                    <div><h3>GitHub</h3><p>Experienced</p></div>
+                                </article>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="text-container glass-container" style="margin-top: 2rem; text-align: left;">
+                        <h3 style="color: var(--color-primary); margin-bottom: 1rem;">Professional Highlights</h3>
+                        <p><strong>Software Engineering Intern, Predica Inc. (Fall 2024)</strong></p>
+                        <ul>
+                              <li>Designed and developed a resume enrichment platform using React, Vite, and Tailwind CSS to create responsive user interfaces and increase development speed.</li>
+                              <li>Integrated the OpenAI API to streamline resume customization and enhance platform functionality.</li>
+                              <li>Gained hands-on experience with scalable cloud solutions, design, development, and deployment in the public cloud.</li>
+                        </ul>
+                        <p style="margin-top: 1rem;"><strong>Archives Officer - Association for Computing Machinery (ACM) (Fall 2025, Spring 2026)</strong></p>
+                        <ul>
+                              <li>Actively contribute to the design and content development of the Fall 2025 ACM physical magazine.</li>
+                              <li>Responsible for curating and providing key historical content and visuals from the ACM archives to
+                                enrich the magazine's articles and features.</li>
+                              <li>Collaborate directly with the magazine's editorial and design teams to ensure accurate representation
+                                of ACM's legacy and current initiatives.</li>
+                                <li>Oversee the organization and cataloging of physical archival materials, ensuring they are readily accessible for current and future publication needs</li>
+                        </ul>
+                        <p style="margin-top: 1rem;"><strong>Development Coordinator - Women in Engineering Hackcthon (WeHack) (Fall 2025, Spring 2026)</strong></p>
+                        <ul>
+                              <li>Part of development team of the official WeHack 2026 website, serving as the central platform for event information and participant engagement.</li>
+                              <li>Proactively collaborated with the WeHack organizing committee to translate event vision into technical specifications, working seamlessly within the development team.</li>
+                              <li>Ensured a cohesive and professional brand identity across all digital and print media by working in tandem with fellow club members.</li>
+                        </ul>
+                        <p style="margin-top: 1rem;"><strong>UX Designer - Women Who Compute (WWC) (Spring 2025, Fall 2025)</strong></p>
+                        <ul>
+                              <li>Designed visually appealing promotional materials and event graphics using Figma to increase
+                                awareness and participation in club events</li>
+                              <li>Collaborated with club members to maintain a consistent brand identity across digital and print media.</li>
+                              <li>Participated in workshops and events focused on empowering women in technology and fostering a
+                                supportive community</li>
+                        </ul>
+                        <p style="margin-top: 1rem;"><strong>Undergraduate Researcher, UTDesign (Fall 2024, Spring 2025)</strong></p>
+                        <ul>
+                              <li>Investigated factors shaping undergraduate students' engineering identity through surveys and concept maps, focusing on areas like interest and competence to enhance curriculum design.</li>
+                              <li>Transcribed and analyzed over 570 concept maps using advanced tools to quantify engineering perceptions and identity dynamics.</li>
+                              <li>Proposed contributions to predictive modeling using Artificial Neural Networks (ANN) to correlate identity data with concept maps.</li>
+                        </ul>
+                        
+                    </div>
+                </div>
+                <!-- <img src="./assets/arrow.png" alt="arrow icon" class="icon arrow" onclick="location.href = './#projects'" onKeyPress="location.href = './#projects'"> -->
+            </section>
 
 
-        <section id="contact"> 
-            
-            <h2 class="title"><p class="section__text__p1">
-                Get in Touch</p>Contact Me</h2>
-                <div class="contact-info-upper-container">
+            <section id="projects" class="section-padding">
+                <h2 class="title-main"><p class="section__text__p1">Browse My Recent </p> Projects</h2> 
+                <div class="experience-details-container">
+                    <div class="about-containers">
+                        
+                        <div class="details-container glass-container project-card-margin">
+                            <div class="article-container">
+                                <img src="./assets/project-1.png" alt="Enchan Tobor Project" class="project-img">
+                            </div>
+                            <h2 class="experience-sub-title project-title">Enchan Tobor - WEHack</h2>
+                            <p style="color: var(--color-secondary); margin-bottom: 0.5rem; font-weight: 300;">Tools: HTML, CSS, JavaScript, R</p>
+                            <p style="color: var(--color-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Developed a website to streamline university freshman onboarding, implemented Parallax Scrolling. Awarded Best Domain Name from GoDaddy Registry - WEHack 2024].</p>
+                            <div class="btn-container">
+                                <button class="btn btn-color-2 project-btn" target="_blank" rel="noopener noreferrer" onclick="location.href='https://github.com/SameeraaGKan/EnchanTobor.git'">Github</button>
+                                <button class="btn btn-color-1 project-btn" target="_blank" rel="noopener noreferrer"  onclick="location.href='https://devpost.com/software/enchantobor'">Devpost</button>
+                            </div>
+                        </div>
+                        <div class="details-container glass-container project-card-margin">
+                            <div class="article-container">
+                                <img src="./assets/project-4.png" alt="BYR" class="project-img">
+                            </div>
+                            <h2 class="experience-sub-title project-title">Build Your Ride (BYR)</h2>
+                            <p style="color: var(--color-secondary); margin-bottom: 0.5rem; font-weight: 300;">Customize your dream car</p>
+                            <p style="color: var(--color-secondary); font-size: 0.9rem; margin-bottom: 1rem;">BYR was an innovative project developed for the Toyota Track at HackUTD 25 that successfully modernized the car customization experience. It transformed vehicle configuration into a real-time, interactive 3D platform by utilizing Blender assets rendered via ThreeJS within a Nuxt.js framework.</p>
+                            <div class="btn-container">
+                                <button class="btn btn-color-2 project-btn" target="_blank" rel="noopener noreferrer" onclick="location.href='https://github.com/Spikestar05/BYR-BuildYourRide.git'">GitHub</button>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="details-container glass-container project-card-margin">
+                            <div class="article-container">
+                                <img src="./assets/project-3.png" alt="CodeScape" class="project-img">
+                            </div>
+                            <h2 class="experience-sub-title project-title">CodeScape</h2>
+                            <p style="color: var(--color-secondary); margin-bottom: 0.5rem; font-weight: 300;">Algorithm escape room</p>
+                            <p style="color: var(--color-secondary); font-size: 0.9rem; margin-bottom: 1rem;">CodeScape is an immersive, interactive web experience that combines computer science education with adventure gaming. This project presents a virtual algorithm escape room where teams collaborate to solve coding-inspired puzzles, crack digital codes, and navigate through challenges based on real CS concepts including recursion, encryption, sorting algorithms, and data structures.</p>
+                            <div class="btn-container">
+                                <button class="btn btn-color-2 project-btn" target="_blank" rel="noopener noreferrer" onclick="location.href='https://github.com/SameeraaGKan/2048-game.git'">GitHub</button>
+                            </div>
+                        </div>
+                        <div class="details-container glass-container project-card-margin">
+                            <div class="article-container">
+                                <img src="./assets/project-2.png" alt="2048 Game Project" class="project-img">
+                            </div>
+                            <h2 class="experience-sub-title project-title">2048 Game (Customized)</h2>
+                            <p style="color: var(--color-secondary); margin-bottom: 0.5rem; font-weight: 300;">Tools: Python</p>
+                            <p style="color: var(--color-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Explored logic and design patterns for custom grid-based games, enhancing problem-solving skills through algorithm optimization for game mechanics.</p>
+                            <div class="btn-container">
+                                <button class="btn btn-color-2 project-btn" target="_blank" rel="noopener noreferrer"  onclick="location.href='https://github.com/SameeraaGKan/2048-game.git'">GitHub</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- <img src="./assets/arrow.png" alt="arrow icon" class="icon arrow" onclick="location.href = './#contact'" onKeyPress="location.href = './#contact'"> -->
+            </section>
+
+
+            <section id="contact" class="section-padding"> 
+                <h2 class="title-main"><p class="section__text__p1">Get in Touch</p>Contact Me</h2>
+                <div class="contact-info-upper-container glass-container contact-info-container-mod">
                     <div class="contact-info-container">
                         <img src="./assets/email.png" alt="email icon" class="icon contact-icon email-icon"/>
                         <p>
-                            <a href="mailto:sameeraagk883@gmail.com">sameeraagk883@gmail.com</a>
+                              <a href="mailto:sameeraagk883@gmail.com">sameeraagk883@gmail.com</a> 
                         </p>
                     </div>
                     <div class="contact-info-container">
                         <img src="./assets/linkedin.png" alt="linkedin icon" class="icon contact-icon"/>
                         <p>
-                            <a href="https://www.linkedin.com/in/sameeraakan118/">LinkedIn</a>
+                              <a href="https://www.linkedin.com/in/sameeraakan118/" target="_blank">LinkedIn</a>
+                        </p>
+                    </div>
+                    <div class="contact-info-container">
+                        <img src="./assets/github.png" alt="github icon" class="icon contact-icon"/>
+                        <p>
+                              <a href="https://github.com/SameeraaGKan" target="_blank">GitHub</a>
                         </p>
                     </div>
                 </div>
-                <img src="./assets/arrow-upward.png" alt="arrow icon" class="icon contact-arrow" onclick="window.scrollTo(0, 0)" onKeyPress="window.scrollTo(0, 0)">
-        </section>
+                <!-- <img src="./assets/arrow-upward.png" alt="arrow icon" class="icon contact-arrow" onclick="window.scrollTo(0, 0)" onKeyPress="window.scrollTo(0, 0)"> -->
+            </section>
+        </main>
+
         <footer>
             <nav>
-                <img src="./assets/cloud.png" alt="cloud" class="cloud cloud-left">
-            <img src="./assets/cloud.png" alt="cloud" class="cloud cloud-right">
                 <div class="nav-links-container">
                     <ul class="nav-links">
                         <li><a href="#about">About</a></li>
@@ -316,8 +311,8 @@
                     </ul>
                 </div>
             </nav>
-            <p>Copyright © 2024 Sameeraa Kandalgaonkar. All Rghts Reserved</p>
-            
+            <p>Copyright &copy; 2024 Sameeraa Kandalgaonkar. All Rights Reserved</p>
         </footer>
-        <script src="script.js"></script>    </body>
-</html></html>
+        <script src="script.js"></script> 
+    </body>
+</html>
