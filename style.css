@@ -398,17 +398,24 @@ article div {
     justify-content: center;
 }
 
-.details-container {
-    flex: 1;
-    padding: 1.5rem;
-    text-align: center;
+#projects .about-containers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    width: 100%;
+    justify-items: center;
+}
 
-    /* ✅ CLICK FIX */
+.details-container {
+    width: 100%;
+    max-width: 420px; /* keeps cards looking clean */
+    text-align: center;
+    padding: 1.5rem;
+
     position: relative;
     z-index: 1;
     pointer-events: auto;
 }
-
 .project-card-margin {
     margin-bottom: 2rem;
 }
