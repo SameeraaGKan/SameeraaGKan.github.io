@@ -2,19 +2,7 @@
 
 /* Modern Color Palette from Image */
 :root {
-    /* Color Palette from Image */
-    --color-yankees-blue: #0D273D; /* Darkest */
-    --color-teal-blue: #548bb0;
-    --color-pewter-blue: #708ea4;
-    --color-pastel-blue: #bbd7ee;
-    --color-columbia-blue: #CDD7DF; /* Lightest */
 
-    /* Theme Variables */
-    --color-primary: var(--color-teal-blue); /* Accent color for role/main headings */
-    --color-secondary: var(--color-yankees-blue); /* Light text color */
-    --color-bg: var(--color-pastel-blue); /* Deep, dark background */
-    --color-text-dynamic: var(--color-yankees-blue); /* Dynamic text color that changes on scroll */
-    
     /* Glass Effect Variables - Using lighter palette colors for frosted look */
     --color-glass-dark: rgba(205, 215, 223, 0.08); /* Dark glass (very transparent light blue) */
     --color-glass-light: rgba(170, 217, 255, 0.15); /* Light glass (more opaque light blue) */
@@ -248,7 +236,6 @@ a:hover {
     background-color: #1a1a1a;
     transition: all 0.3 ease-in-out;
 }
-/* ... Hamburger menu details need media queries, omitted for main CSS ... */
 
 
 /* --- BUTTONS --- */
