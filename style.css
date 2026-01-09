@@ -565,6 +565,7 @@ article div {
 }
 
 /* --- PROJECTS SECTION --- */
+
 .about-containers {
     display: flex;
     gap: 2rem;
@@ -574,7 +575,7 @@ article div {
 
 #projects .about-containers {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 5rem;
     width: 100%;
     justify-items: center;
@@ -583,11 +584,11 @@ article div {
 /* Professional Highlights cards - same grid as projects */
 #experience .about-containers:last-of-type {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 5rem;
     width: 100%;
     justify-items: center;
-    margin-top: 2rem;
+    margin-top: 2rem; 
 }
 
 /* Professional Highlights cards - same width as project cards */
@@ -598,13 +599,14 @@ article div {
 
 .details-container {
     width: 100%;
-    max-width: 420px; /* keeps cards looking clean */
+    max-width: 300px; /* keeps cards looking clean */
     text-align: center;
     padding: 1.5rem;
 
     position: relative;
     z-index: 1;
     pointer-events: auto;
+
 }
 
 /* Make project cards square */
@@ -614,6 +616,10 @@ article div {
     flex-direction: column;
     justify-content: space-between;
     max-width: 100%;
+    padding: 1rem;
+    margin: -40px;
+    margin-bottom: 10px;
+    
 }
 
 #projects .details-container:hover {
@@ -622,7 +628,7 @@ article div {
 }
 
 .project-card-margin {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .article-container {
@@ -656,11 +662,11 @@ article div {
     padding: 0.5rem;
 }
 
-/* Add padding to project card descriptions */
+/* Add padding to project card descriptions
 #projects .details-container p[style*="font-size: 0.9rem"] {
     padding: 0 0.75rem;
     line-height: 1.5;
-}
+} */
 
 
 /* --- CONTACT SECTION --- */
