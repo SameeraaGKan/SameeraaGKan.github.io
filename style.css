@@ -13,6 +13,7 @@
     --color-primary: var(--color-teal-blue); /* Accent color for role/main headings */
     --color-secondary: var(--color-yankees-blue); /* Light text color */
     --color-bg: var(--color-pastel-blue); /* Deep, dark background */
+    --color-text-dynamic: var(--color-yankees-blue); /* Dynamic text color that changes on scroll */
     
     /* Glass Effect Variables - Using lighter palette colors for frosted look */
     --color-glass-dark: rgba(205, 215, 223, 0.08); /* Dark glass (very transparent light blue) */
@@ -33,11 +34,107 @@
 
 body {
     font-family: var(--font-family-primary);
-    background-color: var(--color-bg); 
-    color: var(--color-secondary);
+    background: linear-gradient(to bottom, #f9fbe0 0%, #A67FEA 100%);
+    color: #1a1a1a;
     min-height: 100vh;
     scroll-behavior: smooth;
     overflow-x: hidden;
+    position: relative;
+}
+
+/* Constellation Background - Real Constellations with Purple Side Effects */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        /* ORION - Center/Right (The Hunter with belt) */
+        /* Belt stars */
+        radial-gradient(2px 2px at 65% 50%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 68% 50%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 71% 50%, rgba(100, 80, 150, 0.6), transparent),
+        /* Shoulder and head */
+        radial-gradient(2.5px 2.5px at 66% 45%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 70% 43%, rgba(100, 80, 150, 0.6), transparent),
+        /* Legs and feet */
+        radial-gradient(2px 2px at 64% 58%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 72% 60%, rgba(100, 80, 150, 0.6), transparent),
+        /* Sword */
+        radial-gradient(1.5px 1.5px at 69% 53%, rgba(100, 80, 150, 0.5), transparent),
+        
+        /* URSA MAJOR (Big Dipper) - Top Left */
+        radial-gradient(2px 2px at 15% 20%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 18% 22%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 20% 20%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 22% 22%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 25% 18%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 28% 20%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 30% 22%, rgba(100, 80, 150, 0.6), transparent),
+        
+        /* CASSIOPEIA (W shape) - Top Right */
+        radial-gradient(2px 2px at 80% 15%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 85% 18%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 82% 22%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 88% 25%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 85% 28%, rgba(100, 80, 150, 0.6), transparent),
+        
+        /* URSA MINOR (Little Dipper) - Top Center */
+        radial-gradient(2.5px 2.5px at 50% 12%, rgba(100, 80, 150, 0.7), transparent), /* Polaris */
+        radial-gradient(2px 2px at 48% 18%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 52% 20%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 50% 24%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 46% 26%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 54% 28%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 52% 32%, rgba(100, 80, 150, 0.6), transparent),
+        
+        /* CYGNUS (Northern Cross) - Middle Left */
+        radial-gradient(2.5px 2.5px at 10% 45%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 12% 48%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2.5px 2.5px at 14% 50%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 12% 52%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 10% 55%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 16% 50%, rgba(100, 80, 150, 0.6), transparent),
+        
+        /* LEO - Bottom Left */
+        radial-gradient(2px 2px at 20% 75%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 24% 72%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 22% 78%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 26% 80%, rgba(100, 80, 150, 0.6), transparent),
+        radial-gradient(2px 2px at 28% 75%, rgba(100, 80, 150, 0.6), transparent),
+        
+        /* Background stars (smaller dots for depth) */
+        radial-gradient(0.8px 0.8px at 25% 30%, rgba(100, 80, 150, 0.3), transparent),
+        radial-gradient(0.8px 0.8px at 70% 35%, rgba(100, 80, 150, 0.3), transparent),
+        radial-gradient(0.8px 0.8px at 40% 60%, rgba(100, 80, 150, 0.3), transparent),
+        radial-gradient(0.8px 0.8px at 60% 70%, rgba(100, 80, 150, 0.3), transparent),
+        radial-gradient(0.8px 0.8px at 35% 80%, rgba(100, 80, 150, 0.3), transparent);
+    
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+    z-index: 0;
+    pointer-events: none;
+}
+
+
+/* Constellation Lines - Real Constellation Patterns */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cstyle%3E.line%7Bstroke:rgba(100,80,150,0.4);stroke-width:0.6;fill:none;%7D%3C/style%3E%3C/defs%3E%3C!-- ORION --%3E%3Cline class='line' x1='66%25' y1='45%25' x2='65%25' y2='50%25'/%3E%3Cline class='line' x1='65%25' y1='50%25' x2='68%25' y2='50%25'/%3E%3Cline class='line' x1='68%25' y1='50%25' x2='71%25' y2='50%25'/%3E%3Cline class='line' x1='71%25' y1='50%25' x2='70%25' y2='43%25'/%3E%3Cline class='line' x1='65%25' y1='50%25' x2='64%25' y2='58%25'/%3E%3Cline class='line' x1='71%25' y1='50%25' x2='72%25' y2='60%25'/%3E%3Cline class='line' x1='68%25' y1='50%25' x2='69%25' y2='53%25'/%3E%3C!-- URSA MAJOR (Big Dipper) --%3E%3Cline class='line' x1='15%25' y1='20%25' x2='18%25' y2='22%25'/%3E%3Cline class='line' x1='18%25' y1='22%25' x2='20%25' y2='20%25'/%3E%3Cline class='line' x1='20%25' y1='20%25' x2='22%25' y2='22%25'/%3E%3Cline class='line' x1='22%25' y1='22%25' x2='25%25' y2='18%25'/%3E%3Cline class='line' x1='25%25' y1='18%25' x2='28%25' y2='20%25'/%3E%3Cline class='line' x1='28%25' y1='20%25' x2='30%25' y2='22%25'/%3E%3Cline class='line' x1='22%25' y1='22%25' x2='28%25' y2='20%25'/%3E%3C!-- CASSIOPEIA (W shape) --%3E%3Cline class='line' x1='80%25' y1='15%25' x2='85%25' y2='18%25'/%3E%3Cline class='line' x1='85%25' y1='18%25' x2='82%25' y2='22%25'/%3E%3Cline class='line' x1='82%25' y1='22%25' x2='88%25' y2='25%25'/%3E%3Cline class='line' x1='88%25' y1='25%25' x2='85%25' y2='28%25'/%3E%3C!-- URSA MINOR (Little Dipper) --%3E%3Cline class='line' x1='50%25' y1='12%25' x2='48%25' y2='18%25'/%3E%3Cline class='line' x1='48%25' y1='18%25' x2='52%25' y2='20%25'/%3E%3Cline class='line' x1='52%25' y1='20%25' x2='50%25' y2='24%25'/%3E%3Cline class='line' x1='50%25' y1='24%25' x2='46%25' y2='26%25'/%3E%3Cline class='line' x1='50%25' y1='24%25' x2='54%25' y2='28%25'/%3E%3Cline class='line' x1='54%25' y1='28%25' x2='52%25' y2='32%25'/%3E%3C!-- CYGNUS (Northern Cross) --%3E%3Cline class='line' x1='10%25' y1='45%25' x2='14%25' y2='50%25'/%3E%3Cline class='line' x1='14%25' y1='50%25' x2='10%25' y2='55%25'/%3E%3Cline class='line' x1='12%25' y1='48%25' x2='16%25' y2='50%25'/%3E%3Cline class='line' x1='12%25' y1='52%25' x2='16%25' y2='50%25'/%3E%3C!-- LEO --%3E%3Cline class='line' x1='20%25' y1='75%25' x2='24%25' y2='72%25'/%3E%3Cline class='line' x1='24%25' y1='72%25' x2='22%25' y2='78%25'/%3E%3Cline class='line' x1='22%25' y1='78%25' x2='26%25' y2='80%25'/%3E%3Cline class='line' x1='26%25' y1='80%25' x2='28%25' y2='75%25'/%3E%3Cline class='line' x1='24%25' y1='72%25' x2='28%25' y2='75%25'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
 }
 
 html {
@@ -46,11 +143,11 @@ html {
 
 h2 {
     font-weight: 600;
-    color: var(--color-secondary);
+    color: #1a1a1a;
 }
 
 p {
-    color: var(--color-secondary);
+    color: #1a1a1a;
     font-weight: 300;
 }
 
@@ -94,10 +191,11 @@ nav {
     top: 0;
     z-index: 1000;
     
-    background: var(--color-glass-dark);
+    background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border-bottom: 1px solid var(--color-border-light);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
  
 .nav-links {
@@ -108,22 +206,22 @@ nav {
 }
 
 a {
-    color: var(--color-secondary);
+    color: #1a1a1a;
     text-decoration: none;
     text-decoration-color: transparent;
 }
 
 a:hover {
-    color: var(--color-pewter-blue);
+    color: #4a4a4a;
     text-decoration: underline;
     text-underline-offset: 0.5rem;
-    text-decoration-color: var(--color-pewter-blue);
+    text-decoration-color: #4a4a4a;
 }
 
 .logo a {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--color-secondary);
+    color: #1a1a1a;
 }
 
 .logo:hover {
@@ -147,7 +245,7 @@ a:hover {
 .hamburger-icon span {
     width: 100%;
     height: 2px;
-    background-color: var(--color-secondary);
+    background-color: #1a1a1a;
     transition: all 0.3 ease-in-out;
 }
 /* ... Hamburger menu details need media queries, omitted for main CSS ... */
@@ -178,34 +276,35 @@ a:hover {
 }
 
 .btn-color-1, .btn-color-2 {
-    color: var(--color-secondary);
+    color: white;
 }
 
 .btn-color-1 {
-    /* Main Action Button (Teal Blue fill) */
-    background-color: var(--color-teal-blue);
+    /* Main Action Button - Dark purple */
+    background-color: #6B4A8F;
     border: none;
 }
 
 .btn-color-2 {
-    /* Secondary Action Button (Transparent with Pewter Blue border) */
+    /* Secondary Action Button - Transparent with dark purple border */
     background: transparent;
-    border: 2px solid var(--color-pewter-blue);
+    border: 2px solid #6B4A8F;
+    color: #6B4A8F;
 }
 
 .btn-color-1:hover {
-    /* Darken primary button on hover (Yankees Blue) */
-    background-color: var(--color-pewter-blue);
-    color: var(--color-secondary);
-    border: 2px solid var(--color-columbia-blue);
+    /* Even darker purple on hover */
+    background-color: #5A3F7A;
+    color: white;
+    border: 2px solid #6B4A8F;
     transform: scale(1.05);
 }
 
 .btn-color-2:hover {
-    /* Fill secondary button with lighter accent on hover (Pewter Blue) */
-    background-color: var(--color-pewter-blue);
-    color: var(--color-yankees-blue);
-    border-color: var(--color-pewter-blue);
+    /* Fill with dark purple on hover */
+    background-color: #6B4A8F;
+    color: white;
+    border-color: #6B4A8F;
     transform: scale(1.05);
 }
 
@@ -242,9 +341,16 @@ a:hover {
     text-align: center;
 }
 
+main {
+    position: relative;
+    z-index: 1;
+}
+
 section {
     margin: 0 10rem;
     box-sizing: border-box;
+    position: relative;
+    z-index: 1;
 }
 
 .title-main {
@@ -252,7 +358,7 @@ section {
     text-align: center;
     font-size: 3rem;
     font-weight: 700;
-    color: var(--color-secondary);
+    color: #1a1a1a;
 }
 
 /* --- PROFILE SECTION --- */
@@ -269,20 +375,20 @@ section {
 
 .section__text__p1 {
     font-size: 1.5rem;
-    color: var(--color-secondary);
+    color: #1a1a1a;
     font-weight: 500;
 }
  
 .section__text__p2 {
     font-size: 2rem;
     margin-bottom: 1.5rem;
-    color: var(--color-primary); /* Role color */
+    color: #1a1a1a; /* Role color */
 }
  
 .title {
     font-size: 4rem;
     text-align: center;
-    color: var(--color-secondary);
+    color: #1a1a1a;
     font-weight: 700;
 }
 
@@ -299,9 +405,10 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
-    max-width: 1200px;
+    width: 100%;
+    max-width: 1500px;
     gap: 2rem;
+    margin: 0 auto;
 }
 
 .about-details-container {
@@ -318,16 +425,55 @@ section {
     width: 100%;
     margin-bottom: 2rem;
     margin-top: 2rem;
+    max-width: 100%;
+}
+
+/* Frameworks row - full width */
+.about-containers.frameworks-row {
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+}
+
+.frameworks-full-width {
+    flex: 1 1 100%;
+    max-width: 100%;
+    width: 100%;
+    min-width: 100%;
 }
 
 .details-container {
     flex: 1;
     text-align: center;
     padding: 1.5rem;
+    max-width: 100%;
+}
+
+/* Ensure top row columns match frameworks width */
+#experience .about-containers:not(.frameworks-row) {
+    width: 100%;
+    max-width: 100%;
+}
+
+#experience .about-containers:not(.frameworks-row) .details-container {
+    flex: 1;
+    max-width: calc(50% - 1rem);
+    min-width: 0;
+}
+
+/* About section containers match frameworks width */
+#about .about-containers {
+    width: 100%;
+    max-width: 100%;
+}
+
+#about .text-container {
+    width: 100%;
+    max-width: 100%;
 }
 
 .details-container h3 {
-    color: var(--color-pewter-blue);
+    color: #1a1a1a;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     font-size: 1.5rem;
@@ -347,7 +493,7 @@ section {
     padding-left: 20px;
     margin-top: 5px;
     margin-bottom: 10px;
-    color: var(--color-secondary);
+    color: #1a1a1a;
 }
 
 .text-container ul li {
@@ -365,7 +511,7 @@ section {
 }
 
 .experience-sub-title {
-    color: var(--color-pewter-blue);
+    color: #1a1a1a;
     font-weight: 600;
     font-size: 1.75rem;
     margin-bottom: 2rem;
@@ -391,6 +537,46 @@ article div {
     text-align: left;
 }
 
+/* Skill Progress Bars */
+.skill-bar {
+    width: 100%;
+    height: 8px;
+    background-color: rgba(166, 127, 234, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+    position: relative;
+}
+
+.skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #A67FEA 0%, #8B5FBF 100%);
+    border-radius: 10px;
+    width: 0%;
+    transition: width 1s ease-out;
+    position: relative;
+}
+
+.skill-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
 /* --- PROJECTS SECTION --- */
 .about-containers {
     display: flex;
@@ -401,10 +587,26 @@ article div {
 
 #projects .about-containers {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5rem;
     width: 100%;
     justify-items: center;
+}
+
+/* Professional Highlights cards - same grid as projects */
+#experience .about-containers:last-of-type {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5rem;
+    width: 100%;
+    justify-items: center;
+    margin-top: 2rem;
+}
+
+/* Professional Highlights cards - same width as project cards */
+#experience .about-containers:last-of-type .details-container {
+    max-width: 100%;
+    width: 100%;
 }
 
 .details-container {
@@ -417,6 +619,21 @@ article div {
     z-index: 1;
     pointer-events: auto;
 }
+
+/* Make project cards square */
+#projects .details-container {
+    aspect-ratio:1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 100%;
+}
+
+#projects .details-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+}
+
 .project-card-margin {
     margin-bottom: 2rem;
 }
@@ -452,6 +669,12 @@ article div {
     padding: 0.5rem;
 }
 
+/* Add padding to project card descriptions */
+#projects .details-container p[style*="font-size: 0.9rem"] {
+    padding: 0 0.75rem;
+    line-height: 1.5;
+}
+
 
 /* --- CONTACT SECTION --- */
 #contact {
@@ -485,11 +708,11 @@ article div {
 
 .contact-info-container p a {
     font-size: 1.1rem;
-    color: var(--color-secondary);
+    color: #1a1a1a;
 }
 
 .contact-info-container p a:hover {
-    color: var(--color-pewter-blue);
+    color: #4a4a4a;
 }
 
 .contact-icon {
@@ -508,26 +731,165 @@ article div {
 footer {
     height: 15vh;
     margin: 0;
-    padding-bottom: 1rem;
+    padding: 2rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: var(--color-glass-dark);
+    background: transparent;
+    gap: 1.5rem;
+}
+
+footer nav {
+    background: rgba(215, 204, 247, 0.26);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+footer .nav-links {
+    gap: 2rem;
+    margin: 0;
+}
+
+footer .nav-links a {
+    color: #1a1a1a;
+    font-weight: 400;
+}
+
+footer .nav-links a:hover {
+    color: #4a4a4a;
+    text-decoration: underline;
+    text-decoration-color: #4a4a4a;
 }
 
 footer p {
     text-align: center;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-footer .nav-links-container {
-    margin-top: 1rem;
+    color: rgba(26, 26, 26, 0.6);
+    margin: 0;
+    font-size: 0.9rem;
 }
 
 .details-container {
     position: relative;
     z-index: 1;
     pointer-events: auto;
+}
+
+/* --- MODAL STYLES --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: linear-gradient(to bottom, rgba(242, 246, 190, 0.9) 0%, rgba(166, 127, 234, 0.9) 100%);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background: var(--color-glass-light);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    margin: auto;
+    padding: 2rem;
+    border-radius: 20px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideUp 0.3s ease;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--color-border-light);
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    color: #1a1a1a;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    transition: transform 0.3s ease;
+    z-index: 10001;
+}
+
+.modal-close:hover {
+    transform: scale(1.2);
+    color: #4a4a4a;
+}
+
+.modal-image {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.modal-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+}
+
+.modal-tools {
+    color: #1a1a1a;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.modal-description {
+    color: #1a1a1a;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.modal-buttons .btn {
+    margin: 0;
 }
