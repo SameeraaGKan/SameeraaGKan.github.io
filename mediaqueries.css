@@ -1,108 +1,94 @@
-/* This is when the size of the screen is less than 1400 px */
-@media screen and (max-width: 1400px) {
-  #profile {
-    height: 83vh;
-    margin-bottom: 6rem;
+@media (max-width: 1080px) {
+  .page-shell {
+    width: min(100% - 24px, 1480px);
+    min-height: calc(100vh - 24px);
+    margin: 12px auto;
   }
-  .about-containers {
-    flex-wrap: wrap;
+
+  .browser-window {
+    min-height: calc(100vh - 24px);
   }
-  #contact,
-  #projects {
-    height: fit-content;
+
+  .browser-tabs {
+    padding-inline: 0.65rem;
+  }
+
+  .tab-link {
+    min-height: 40px;
+    padding-inline: 0.9rem;
+    font-size: 0.92rem;
+  }
+
+  .portfolio-stage,
+  .tab-panel {
+    min-height: auto;
+  }
+
+  .hero-grid {
+    min-height: auto;
+  }
+
+  .split-layout,
+  .skills-board,
+  .timeline-grid,
+  .project-grid,
+  .photo-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
   }
 }
 
-/* This is for when the size of the screen is less than 1200px */
+@media (max-width: 700px) {
+  .page-shell {
+    width: min(100% - 16px, 1480px);
+    margin: 8px auto;
+  }
 
-@media screen and (max-width: 1200px) {
-  #desktop-nav {
+  .browser-toolbar {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .browser-toolbar .brand {
     display: none;
   }
-  #hamburger-nav {
-    display: flex;
-  }
-  #experience,
-  .experience-details-container {
-    margin-top: 2rem;
-  }
-  #profile,
-  .section-container {
-    display: block;
-  }
-  .arrow {
-    display: none;
-  }
-  section,
-  .section-container {
-    height: fit-content;
-  }
-  section {
-    margin: 0 5%;
-  }
-  .section__pic-container {
-    width: 275px;
-    height: 275px;
-    margin: 0 auto 2rem;
-  }
-  .about-containers {
-    margin-top: 0;
-  }
-}
 
-/* this is when the website is opened on a phone */
+  .window-controls span {
+    width: 10px;
+    height: 10px;
+  }
 
-@media screen and (max-width: 600px) {
-  #contact,
-  footer {
-    height: 40vh;
+  .address-bar {
+    font-size: 0.78rem;
+    padding-inline: 0.7rem;
   }
-  #profile {
-    height: 83vh;
-    margin-bottom: 0;
+
+  .portfolio-stage {
+    padding: 1rem;
   }
-  article {
-    font-size: 1rem;
+
+  .hero-copy h1 {
+    font-size: clamp(2.7rem, 16vw, 4.4rem);
   }
-  footer nav {
-    height: fit-content;
-    margin-bottom: 2rem;
+
+  .section-heading h2 {
+    font-size: clamp(2rem, 11vw, 3.2rem);
   }
-  .about-containers,
-  .contact-info-upper-container,
-  .btn-container {
-    flex-wrap: wrap;
+
+  .split-layout,
+  .skills-board,
+  .timeline-grid,
+  .project-grid,
+  .photo-strip {
+    grid-template-columns: 1fr;
   }
-  .contact-info-container {
-    margin: 0;
+
+  .button-row {
+    width: 100%;
   }
-  .contact-info-container p,
-  .nav-links li a {
-    font-size: 1rem;
-  }
-  .experience-sub-title {
-    font-size: 1.25rem;
-  }
-  .logo {
-    font-size: 1.5rem;
-  }
-  .nav-links {
-    flex-direction: column;
-    gap: 0.5rem;
-    text-align: center;
-  }
-  .section__pic-container {
-    width: auto;
-    height: 46vw;
-    justify-content: center;
-  }
-  .section__text__p2 {
-    font-size: 1.25rem;
-  }
-  .title {
-    font-size: 2rem;
-  }
-  .text-container {
-    text-align: justify;
+
+  .btn {
+    flex: 1 1 150px;
   }
 }

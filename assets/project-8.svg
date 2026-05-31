@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">HealthCluster project preview</title>
+  <desc id="desc">Cluster visualization for health tweet analysis.</desc>
+  <rect width="1200" height="750" fill="#fff8ef"/>
+  <rect x="70" y="70" width="1060" height="610" fill="#e8b8ad"/>
+  <g fill="#6f4b5b" opacity="0.95">
+    <circle cx="320" cy="250" r="72"/>
+    <circle cx="250" cy="330" r="42"/>
+    <circle cx="390" cy="355" r="55"/>
+    <circle cx="790" cy="260" r="65"/>
+    <circle cx="885" cy="320" r="48"/>
+    <circle cx="725" cy="370" r="54"/>
+    <circle cx="585" cy="510" r="78"/>
+    <circle cx="490" cy="555" r="44"/>
+    <circle cx="690" cy="585" r="46"/>
+  </g>
+  <g stroke="#fff8ef" stroke-width="10" fill="none" opacity="0.7">
+    <path d="M320 250l70 105-140-25z"/>
+    <path d="M790 260l95 60-160 50z"/>
+    <path d="M585 510l105 75-200-30z"/>
+  </g>
+  <text x="135" y="165" fill="#341416" font-family="monospace" font-size="58" font-weight="700">K-MEANS</text>
+  <text x="135" y="635" fill="#341416" font-family="monospace" font-size="42" font-weight="700">JACCARD HEALTH CLUSTERS</text>
+</svg>
