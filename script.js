@@ -180,7 +180,7 @@ if (canvas) {
     draw() {
       ctx.save();
 
-      ctx.shadowBlur = 15;
+      ctx.shadowBlur = 20;
       ctx.shadowColor = "#22c4cc";
 
       ctx.beginPath();
