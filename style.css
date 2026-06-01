@@ -209,7 +209,7 @@ img {
   min-height: calc(100vh - 143px);
   border: 0;
   border-radius: 0;
-  padding: clamp(1.5rem, 4vw, 3rem); /* Slightly optimized padding inside the viewport window */
+  padding: clamp(1.5rem, 4vw, 3rem);
   overflow: hidden;
   box-shadow: none;
   background: rgba(251, 248, 241, 0.74);
@@ -238,57 +238,86 @@ img {
   }
 }
 
-/* --- UPDATED HOME VIEW SECTION --- */
-.hero-grid {
-  min-height: auto;
-  padding: clamp(2.5rem, 6vw, 5rem) clamp(1rem, 3vw, 2.5rem);
+/* --- HOME VIEW: FROSTED GLASS & FIRECRACKER BURST SYSTEM --- */
+.hero-grid.full-glass-burst-hero {
+  position: relative;
+  min-height: calc(100vh - 207px);
   display: flex;
+  justify-content: center;
   align-items: center;
+  padding: 2rem;
+  overflow: hidden;
+  background: var(--paper-soft);
 }
 
+#burstCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0);
+}
+
+
 .hero-copy {
+  position: relative;
+  z-index: 3;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  align-items: center;
+  gap: 0.6rem;
+  max-width: 850px;
+  pointer-events: none;
+  text-align: center;
+}
+
+.hero-copy .button-row,
+.hero-copy .btn {
+  pointer-events: auto;
 }
 
 .hero-copy h1 {
-  max-width: 760px;
   color: #111111;
-  font-size: clamp(3.4rem, 8vw, 7.8rem);
-  line-height: 0.9;
+  font-size: clamp(3rem, 7.5vw, 6.5rem);
+  line-height: 1.05;
   font-weight: 700;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 .hero-copy h1 + span {
   display: block;
   margin-top: 0.8rem;
   color: var(--muted);
-  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
   font-weight: 400;
 }
 
 .hero-copy .eyebrow {
   color: var(--wine);
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  margin-bottom: 1.8rem;
-}
-/* --- END UPDATED HOME VIEW SECTION --- */
-
-.intro {
-  max-width: 650px;
-  margin: 1.5rem 0 2rem;
-  color: var(--muted);
-  font-size: clamp(1rem, 1.8vw, 1.2rem);
-  line-height: 1.8;
+  letter-spacing: 0.04em;
+  margin-bottom: 2rem;
 }
 
+@media (max-width: 580px) {
+  .hero-copy h1 {
+    white-space: normal;
+    font-size: 2.8rem;
+  }
+}
+
+/* --- BUTTON LAYOUTS --- */
 .button-row {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 0.8rem;
+  gap: 0.9rem;
+  width: 100%;
 }
 
 .btn {
@@ -313,6 +342,7 @@ img {
   background: rgba(251, 248, 241, 0.62);
 }
 
+/* --- REUSABLE STRUCTURES & CARDS --- */
 .section-heading {
   max-width: 900px;
   margin-bottom: 1.5rem;
@@ -326,6 +356,14 @@ img {
   line-height: 0.98;
 }
 
+.intro {
+  max-width: 650px;
+  margin: 1.5rem 0 2rem;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  line-height: 1.8;
+}
+
 .split-layout,
 .skills-board,
 .timeline-grid,
@@ -335,13 +373,18 @@ img {
 }
 
 .split-layout,
-.skills-board {
+.timeline-grid,
+.project-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Updated to allow dynamic column flow for the added skills categories */
+.skills-board {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .timeline-grid,
 .project-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   max-height: calc(100vh - 250px);
   overflow: auto;
   padding-right: 0.4rem;
@@ -349,8 +392,7 @@ img {
 
 .content-card,
 .project-card,
-.photo-tile,
-.contact-card {
+.photo-tile {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(251, 248, 241, 0.74);
@@ -378,6 +420,7 @@ img {
   line-height: 1.65;
 }
 
+/* --- TECHNICAL SKILLS MATRIX --- */
 .skill-list {
   display: flex;
   flex-wrap: wrap;
@@ -393,6 +436,7 @@ img {
   font-size: 0.92rem;
 }
 
+/* --- PROJECT SHEETS --- */
 .project-card {
   min-height: 330px;
   padding: 0.8rem;
@@ -415,6 +459,7 @@ img {
   background: linear-gradient(135deg, #e8b8ad, #9bb9c9);
 }
 
+/* --- PHOTOGRAPHY GALLERY --- */
 .photo-strip {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -459,29 +504,97 @@ img {
   text-align: center;
 }
 
-.contact-card {
+/* --- CONTACT NETWORK GRID --- */
+.contact-wrapper {
   display: grid;
-  gap: 0.9rem;
-  width: min(680px, 100%);
-  padding: clamp(1rem, 2vw, 1.6rem);
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 3vw, 2.5rem);
+  align-items: center;
 }
 
-.contact-card a,
-.contact-card span {
-  min-height: 54px;
+.contact-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact-cta h2 {
+  color: #111111;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.contact-desc {
+  color: var(--muted);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.7;
+  max-width: 460px;
+  margin-bottom: 2rem;
+}
+
+.contact-email-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  text-decoration: none;
+}
+
+.contact-network {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+}
+
+.network-tile {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--line);
+  gap: 1.2rem;
+  padding: 1.5rem;
+  background: rgba(251, 248, 241, 0.74);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(46, 68, 76, 0.05);
+  transition: all 220ms ease;
+}
+
+.network-tile:hover {
+  transform: translateY(-4px);
+  background: rgba(251, 248, 241, 0.95);
+  border-color: var(--wine);
+  box-shadow: 0 16px 36px rgba(46, 68, 76, 0.12);
+}
+
+.tile-icon {
+  font-size: 1.6rem;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(166, 111, 122, 0.12);
+  border-radius: 50%;
   color: var(--wine);
-  font-size: clamp(1rem, 2vw, 1.3rem);
+}
+
+.tile-info h3 {
+  color: var(--wine-dark);
+  font-size: 1.1rem;
   font-weight: 600;
+  margin-bottom: 0.15rem;
 }
 
-.contact-card a:last-child,
-.contact-card span:last-child {
-  border-bottom: 0;
+.tile-info p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  word-break: break-all;
 }
 
+/* --- MODAL DIALOGUES --- */
 .modal {
   position: fixed;
   inset: 0;
@@ -541,19 +654,55 @@ img {
   margin-bottom: 1rem;
 }
 
-.hero-copy h1 {
-  max-width: 100%; /* Allows the heading to take up the full width of the container */
-  color: #111111;
-  font-size: clamp(2.5rem, 6vw, 6.5rem); /* Slightly scaled down maximum size so it fits perfectly on a single line */
-  line-weight: 700;
-  line-height: 1.1; 
-  white-space: nowrap; /* Forces the text to stay on one line if you absolutely don't want it to wrap */
+/* --- RESPONSIVE MEDIA QUERIES --- */
+@media (max-width: 868px) {
+  .split-layout,
+  .timeline-grid,
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-/* Optional: Media query to handle smaller mobile screens safely so it doesn't clip */
-@media (max-width: 480px) {
-  .hero-copy h1 {
-    white-space: normal; /* Allows natural wrapping only on mobile devices */
-    font-size: 2.8rem;
+@media (max-width: 768px) {
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
+  
+  .contact-network {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .split-layout,
+  .timeline-grid,
+  .project-grid,
+  .photo-strip {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- FIND THIS BLOCK IN YOUR STYLE.CSS --- */
+.hero-grid.full-glass-burst-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: rgba(251, 248, 241, 0.15); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  
+  /* CRITICAL FIX: Tells the browser to ignore this overlay layer */
+  pointer-events: none; 
+}
+
+#burstCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  mix-blend-mode: multiply;
 }

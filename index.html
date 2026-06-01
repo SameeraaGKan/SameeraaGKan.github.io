@@ -45,20 +45,24 @@
 
         <main class="portfolio-stage">
         <section id="home" class="tab-panel active" data-tab-panel="home">
-          <div class="hero-grid">
+        <div class="hero-grid full-glass-burst-hero">
+            
+            <canvas id="burstCanvas"></canvas>
+            
             <div class="hero-copy">
-                <h1>Hi,</h1>
-                <h1>Sameeraa here</h1>
-                <span>Dallas, Texas</span>
-                <p class="eyebrow">Computer Science Student &amp; Developer</p>
-              <div class="button-row">
+            <h1>Hi, Sameeraa here</h1>
+            <span>Dallas, Texas</span>
+            <p class="eyebrow">Computer Science Student &amp; Developer</p>
+            
+            <div class="button-row">
                 <button class="btn primary" type="button" onclick="window.open('./assets/Sameeraa_Kandalgaonkar_excellent_resume.pdf')">
-                  Resume
+                Resume
                 </button>
                 <button class="btn secondary" type="button" data-tab-link="contact">Contact</button>
-              </div>
             </div>
-          </div>
+            </div>
+
+        </div>
         </section>
 
         <section id="about" class="tab-panel" data-tab-panel="about">
@@ -89,30 +93,42 @@
         </section>
 
         <section id="skills" class="tab-panel" data-tab-panel="skills">
-          <div class="section-heading">
+        <div class="section-heading">
             <p class="eyebrow">Technical Skills</p>
             <h2>Tools I use to design, build, and ship.</h2>
-          </div>
-          <div class="skills-board">
+        </div>
+        <div class="skills-board">
             <article class="content-card">
-              <h3>Programming</h3>
-              <div class="skill-list">
+            <h3>Programming</h3>
+            <div class="skill-list">
                 <span>C++</span><span>C</span><span>Python</span><span>JavaScript</span><span>Java</span><span>SQL</span><span>R</span><span>HTML</span><span>CSS</span>
-              </div>
+            </div>
             </article>
             <article class="content-card">
-              <h3>Frameworks</h3>
-              <div class="skill-list">
-                <span>React</span><span>Nuxt.js</span><span>Node.js</span><span>FastAPI</span><span>Tailwind CSS</span><span>Vite</span><span>TresJS</span>
-              </div>
+            <h3>Frameworks & Libraries</h3>
+            <div class="skill-list">
+                <span>React</span><span>Nuxt.js</span><span>Node.js</span><span>FastAPI</span><span>Tailwind CSS</span><span>Vite</span><span>TresJS</span><span>Three.js</span>
+            </div>
             </article>
             <article class="content-card">
-              <h3>Data, Design & Dev Tools</h3>
-              <div class="skill-list">
-                <span>Figma</span><span>Blender</span><span>Tableau</span><span>Excel</span><span>Pandas</span><span>Scikit-learn</span><span>XGBoost</span><span>Matplotlib</span><span>MongoDB</span><span>PostgreSQL</span><span>Git</span><span>Socket Programming</span><span>Multi-threaded Systems</span>
-              </div>
+            <h3>Data Science & AI</h3>
+            <div class="skill-list">
+                <span>Pandas</span><span>Scikit-learn</span><span>XGBoost</span><span>Matplotlib</span><span>Tableau</span><span>Excel</span>
+            </div>
             </article>
-          </div>
+            <article class="content-card">
+            <h3>Design & 3D Modeling</h3>
+            <div class="skill-list">
+                <span>Figma</span><span>Blender</span>
+            </div>
+            </article>
+            <article class="content-card">
+            <h3>Dev Tools & Architecture</h3>
+            <div class="skill-list">
+                <span>Git</span><span>GitHub</span><span>PostgreSQL</span><span>MongoDB</span><span>Azure</span><span>Socket Programming</span><span>Multi-threaded Systems</span><span>System Customization (Windhawk)</span>
+            </div>
+            </article>
+        </div>
         </section>
 
         <section id="highlights" class="tab-panel" data-tab-panel="highlights">
@@ -209,28 +225,66 @@
             <h2>A small gallery, now inside the main portfolio.</h2>
           </div>
           <div class="photo-strip">
-            <figure class="photo-tile"><img src="./assets/nature1.jpeg" alt="Nature I" /><figcaption>Nature I</figcaption></figure>
-            <figure class="photo-tile"><img src="./assets/nature2.jpeg" alt="Nature II" /><figcaption>Nature II</figcaption></figure>
-            <figure class="photo-tile"><img src="./assets/nature3.jpeg" alt="Nature III" /><figcaption>Nature III</figcaption></figure>
-            <figure class="photo-tile"><img src="./assets/nature4.jpeg" alt="Nature IV" /><figcaption>Nature IV</figcaption></figure>
-            <figure class="photo-tile"><img src="./assets/nature5.jpeg" alt="Nature V" /><figcaption>Nature V</figcaption></figure>
-            <figure class="photo-tile"><img src="./assets/nature6.jpeg" alt="Nature VI" /><figcaption>Nature VI</figcaption></figure>
-            <figure class="photo-tile"><img src="./assets/nature7.jpeg" alt="Nature VII" /><figcaption>Nature VII</figcaption></figure>
-            <figure class="photo-tile"><img src="./assets/nature8.jpeg" alt="Nature VIII" /><figcaption>Nature VIII</figcaption></figure>
+            <figure class="photo-tile"><img src="./assets/nature1.jpeg" alt="Nature I" /><figcaption></figcaption></figure>
+            <figure class="photo-tile"><img src="./assets/nature2.jpeg" alt="Nature II" /><figcaption></figcaption></figure>
+            <figure class="photo-tile"><img src="./assets/nature3.jpeg" alt="Nature III" /><figcaption></figcaption></figure>
+            <figure class="photo-tile"><img src="./assets/nature4.jpeg" alt="Nature IV" /><figcaption></figcaption></figure>
+            <figure class="photo-tile"><img src="./assets/nature5.jpeg" alt="Nature V" /><figcaption></figcaption></figure>
+            <figure class="photo-tile"><img src="./assets/nature6.jpeg" alt="Nature VI" /><figcaption></figcaption></figure>
+            <figure class="photo-tile"><img src="./assets/nature7.jpeg" alt="Nature VII" /><figcaption></figcaption></figure>
+            <figure class="photo-tile"><img src="./assets/nature8.jpeg" alt="Nature VIII" /><figcaption></figcaption></figure>
           </div>
         </section>
 
         <section id="contact" class="tab-panel" data-tab-panel="contact">
-          <div class="section-heading">
-            <p class="eyebrow">Contact</p>
+        <div class="contact-wrapper">
+            
+            <div class="contact-cta">
+            <p class="eyebrow">Get in touch</p>
             <h2>Let’s connect.</h2>
-          </div>
-          <div class="contact-card">
-            <a href="mailto:sameeraagk883@gmail.com">sameeraagk883@gmail.com</a>
-            <a href="https://www.linkedin.com/in/sameeraakan118/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="https://github.com/SameeraaGKan" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://devpost.com/SameeraaGKan" target="_blank" rel="noopener noreferrer">Devpost</a>
-          </div>
+            <p class="contact-desc">
+                Whether you want to talk full-stack development, machine learning, 3D web graphics, or potential internship opportunities—my inbox is always open.
+            </p>
+            <a href="mailto:sameeraagk883@gmail.com" class="btn primary contact-email-btn">
+                Say Hello
+            </a>
+            </div>
+
+            <div class="contact-network">
+            <a href="mailto:sameeraagk883@gmail.com" class="network-tile">
+                <div class="tile-icon">✉️</div>
+                <div class="tile-info">
+                <h3>Email</h3>
+                <p>sameeraagk883@gmail.com</p>
+                </div>
+            </a>
+
+            <a href="https://www.linkedin.com/in/sameeraakan118/" target="_blank" rel="noopener noreferrer" class="network-tile">
+                <div class="tile-icon">💼</div>
+                <div class="tile-info">
+                <h3>LinkedIn</h3>
+                <p>Connect with me</p>
+                </div>
+            </a>
+
+            <a href="https://github.com/SameeraaGKan" target="_blank" rel="noopener noreferrer" class="network-tile">
+                <div class="tile-icon">💻</div>
+                <div class="tile-info">
+                <h3>GitHub</h3>
+                <p>Check out my builds</p>
+                </div>
+            </a>
+
+            <a href="https://devpost.com/SameeraaGKan" target="_blank" rel="noopener noreferrer" class="network-tile">
+                <div class="tile-icon">🚀</div>
+                <div class="tile-info">
+                <h3>Devpost</h3>
+                <p>Hackathon projects</p>
+                </div>
+            </a>
+            </div>
+
+        </div>
         </section>
         </main>
       </div>
