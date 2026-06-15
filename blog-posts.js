@@ -40,9 +40,7 @@ const BLOG_POSTS = {
 
       <p>This isn't a story about getting lucky in 1999. It's a story about what happens when a company sits at the constraint of a supercycle and just keeps compounding.</p>
 
-      <p>The real question isn't <em>"what if I'd bought NVIDIA in 1999."</em></p>
-
-      <p>Well I didn't exist then but still.</p>
+      <p>The real question isn't <em>"what if I'd bought NVIDIA in 1999."</em>(Well I didn't exist then but still.)</p>
 
       <p>It's: <strong>what's the bottleneck in the next supercycle — and who owns it?</strong></p>
 
