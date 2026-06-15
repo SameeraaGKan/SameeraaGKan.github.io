@@ -47,6 +47,8 @@ const BLOG_POSTS = {
       <p>It's: <strong>what's the bottleneck in the next supercycle — and who owns it?</strong></p>
 
       <p>That's the bet worth thinking about.</p>
+
+      <p>                                                           - Sameeraa<p>
     `
   }
 };
