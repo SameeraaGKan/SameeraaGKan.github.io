@@ -42,6 +42,8 @@ const BLOG_POSTS = {
 
       <p>The real question isn't <em>"what if I'd bought NVIDIA in 1999."</em></p>
 
+      <p>Well I didn't exist then but still.</p>
+
       <p>It's: <strong>what's the bottleneck in the next supercycle — and who owns it?</strong></p>
 
       <p>That's the bet worth thinking about.</p>
