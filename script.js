@@ -366,3 +366,70 @@ if (canvas) {
     animate();
   }, 60);
 }
+
+// ============================================================
+// BLOG — append this entire block to the bottom of script.js
+// Also add this line in your <head> (before script.js):
+//   <script src="blog-posts.js"></script>
+// ============================================================
+
+(function initBlog() {
+
+  // --- Open individual post when "Read post →" is clicked ---
+  document.addEventListener("click", function (e) {
+    const btn = e.target.closest("[data-post]");
+    if (!btn) return;
+
+    const postKey = btn.dataset.post;
+    const post = BLOG_POSTS[postKey];
+    if (!post) return;
+
+    // Inject content
+    const container = document.getElementById("blog-post-content");
+    container.innerHTML = `
+      <div class="post-header">
+        <div class="blog-card-meta">
+          <span class="blog-tag">${post.tag}</span>
+          <span class="blog-date">${post.date}</span>
+        </div>
+        <h1>${post.title}</h1>
+      </div>
+      <div class="post-body">${post.content}</div>
+    `;
+
+    // Navigate to post panel using your existing tab system
+    switchTab("blog-post");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // --- "Back to Writing" button ---
+  document.addEventListener("click", function (e) {
+    const btn = e.target.closest(".blog-back-btn");
+    if (!btn) return;
+    switchTab("blog");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // Helper: reuse your existing tab switching logic
+  function switchTab(tabName) {
+    // Deactivate all panels and tabs
+    document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+    document.querySelectorAll(".tab-link").forEach(t => t.classList.remove("active"));
+
+    // Activate target panel
+    const panel = document.querySelector(`[data-tab-panel="${tabName}"]`);
+    if (panel) panel.classList.add("active");
+
+    // Activate matching tab button (blog-post shares the blog tab highlight)
+    const tabKey = tabName === "blog-post" ? "blog" : tabName;
+    const tab = document.querySelector(`[data-tab-link="${tabKey}"]`);
+    if (tab) tab.classList.add("active");
+
+    // Update address bar
+    const addressBar = document.getElementById("browserAddress");
+    if (addressBar) {
+      addressBar.textContent = `sameeraa.dev/${tabName.replace("-", "/")}`;
+    }
+  }
+
+})();

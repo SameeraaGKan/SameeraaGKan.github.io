@@ -24,6 +24,7 @@
             <button class="tab-link" type="button" data-tab-link="highlights" role="tab">Highlights</button>
             <button class="tab-link" type="button" data-tab-link="projects" role="tab">Projects</button>
             <button class="tab-link" type="button" data-tab-link="photography" role="tab">Photography</button>
+            <button class="tab-link" type="button" data-tab-link="blog" role="tab">Blog</button>
             <button class="tab-link" type="button" data-tab-link="contact" role="tab">Contact</button>
           </div>
 
@@ -236,6 +237,42 @@
           </div>
         </section>
 
+        <!-- ============================================================
+     STEP 2: Add these two sections inside .portfolio-stage
+     (paste after the photography section, before the contact section)
+     ============================================================ -->
+ 
+        <!-- BLOG INDEX -->
+        <section id="blog" class="tab-panel" data-tab-panel="blog">
+          <div class="section-heading">
+            <p class="eyebrow">Writing</p>
+            <h2>Ideas I can't stop thinking about.</h2>
+          </div>
+          <div class="blog-grid">
+        
+            <article class="blog-card" data-post="nvidia-supercycle">
+              <div class="blog-card-meta">
+                <span class="blog-tag">AI Economics</span>
+                <span class="blog-date">June 2026</span>
+              </div>
+              <h3>$1,000 in NVIDIA in 1999 → $5.1M Today. Here's Why That's Not a Luck Story.</h3>
+              <p>I came across Stanford's MS&E 435 — Economics of the AI Supercycle — and it completely reframed how I think about AI. The NVIDIA story isn't about getting lucky. It's about what happens when a company keeps sitting at the constraint of a supercycle.</p>
+              <button class="blog-read-btn" type="button" data-post="nvidia-supercycle">Read post →</button>
+            </article>
+        
+          </div>
+        </section>
+        
+        <!-- INDIVIDUAL POST VIEW -->
+        <section id="blog-post" class="tab-panel" data-tab-panel="blog-post">
+          <div class="blog-post-wrap">
+            <button class="blog-back-btn" type="button" data-tab-link="blog">← Back to Writing</button>
+            <div id="blog-post-content">
+              <!-- Post content injected by JS -->
+            </div>
+          </div>
+        </section>
+
         <section id="contact" class="tab-panel" data-tab-panel="contact">
         <div class="contact-wrapper">
             
@@ -301,6 +338,7 @@
       </div>
     </div>
 
+    <script src="blog-posts.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
