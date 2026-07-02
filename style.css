@@ -311,6 +311,58 @@ img {
   }
 }
 
+/* --- FLOATING POLAROID PHOTOS --- */
+.floating-photos {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.polaroid {
+  --rot: 0deg;
+  position: absolute;
+  margin: 0;
+  background: #fffdf9;
+  padding: 8px 8px 22px;
+  border-radius: 6px;
+  box-shadow: 0 14px 28px rgba(17, 17, 17, 0.16), 0 2px 6px rgba(17, 17, 17, 0.08);
+  transform: rotate(var(--rot));
+  animation: polaroidFloat 9s ease-in-out infinite;
+  will-change: transform;
+}
+
+.polaroid img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.polaroid-1 { --rot: -8deg; top: 9%;    left: 5%;   width: 118px; height: 148px; animation-duration: 8s; }
+.polaroid-2 { --rot: 7deg;  top: 12%;   right: 6%;  width: 132px; height: 108px; animation-duration: 10s; animation-delay: -3s; }
+.polaroid-3 { --rot: 6deg;  bottom: 9%; left: 8%;   width: 112px; height: 132px; animation-duration: 9s;  animation-delay: -5s; }
+.polaroid-4 { --rot: -5deg; bottom: 7%; right: 8%;  width: 132px; height: 104px; animation-duration: 11s; animation-delay: -1.5s; }
+
+@keyframes polaroidFloat {
+  0%, 100% { transform: translateY(0) rotate(var(--rot)); }
+  50% { transform: translateY(-16px) rotate(calc(var(--rot) + 3deg)); }
+}
+
+@media (max-width: 1080px) {
+  .polaroid-1, .polaroid-3 { width: 92px; height: 116px; }
+  .polaroid-2, .polaroid-4 { width: 104px; height: 86px; }
+}
+
+@media (max-width: 700px) {
+  .floating-photos { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .polaroid { animation: none; }
+}
+
 /* --- BUTTON LAYOUTS --- */
 .button-row {
   display: flex;
