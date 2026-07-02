@@ -1,8 +1,11 @@
 // --- PORTFOLIO CORE ROUTING & COMPONENT MATRIX ---
 const tabButtons = document.querySelectorAll("[data-tab-link]");
 const tabPanels = document.querySelectorAll("[data-tab-panel]");
+const sections = Array.from(tabPanels);
 const browserAddress = document.getElementById("browserAddress");
 const stageEl = document.querySelector(".portfolio-stage");
+
+let currentSectionIndex = 0;
 
 const tabRoutes = {
   home: "sameeraa.kan/home",
@@ -20,6 +23,9 @@ function setActiveTab(tabName, updateHash = true) {
     button.classList.toggle("active", button.dataset.tabLink === tabName);
     button.setAttribute("aria-selected", String(button.dataset.tabLink === tabName));
   });
+
+  const sectionIndex = sections.findIndex((panel) => panel.dataset.tabPanel === tabName);
+  if (sectionIndex !== -1) currentSectionIndex = sectionIndex;
 
   if (browserAddress) {
     browserAddress.textContent = tabRoutes[tabName] || tabRoutes.home;
@@ -56,6 +62,55 @@ if (stageEl && "IntersectionObserver" in window) {
   );
 
   tabPanels.forEach((panel) => sectionObserver.observe(panel));
+}
+
+// --- GEAR-SNAP SCROLL: one wheel gesture jumps a whole section, ---
+// --- but scrolls normally inside a section taller than the viewport ---
+if (stageEl) {
+  let isSnapping = false;
+  let snapReleaseTimer;
+
+  function goToSectionIndex(index) {
+    if (index < 0 || index >= sections.length) return;
+
+    isSnapping = true;
+    sections[index].scrollIntoView({ behavior: "smooth", block: "start" });
+    setActiveTab(sections[index].dataset.tabPanel);
+
+    clearTimeout(snapReleaseTimer);
+    snapReleaseTimer = setTimeout(() => {
+      isSnapping = false;
+    }, 700);
+  }
+
+  stageEl.addEventListener(
+    "wheel",
+    (event) => {
+      if (isSnapping) {
+        event.preventDefault();
+        return;
+      }
+
+      const panel = sections[currentSectionIndex];
+      if (!panel) return;
+
+      const panelRect = panel.getBoundingClientRect();
+      const stageRect = stageEl.getBoundingClientRect();
+      const edgeTolerance = 6;
+      const atSectionTop = panelRect.top >= stageRect.top - edgeTolerance;
+      const atSectionBottom = panelRect.bottom <= stageRect.bottom + edgeTolerance;
+
+      if (event.deltaY > 0 && atSectionBottom && currentSectionIndex < sections.length - 1) {
+        event.preventDefault();
+        goToSectionIndex(currentSectionIndex + 1);
+      } else if (event.deltaY < 0 && atSectionTop && currentSectionIndex > 0) {
+        event.preventDefault();
+        goToSectionIndex(currentSectionIndex - 1);
+      }
+      // otherwise: let the section scroll normally, its content is taller than the viewport
+    },
+    { passive: false }
+  );
 }
 
 function initFromHash() {

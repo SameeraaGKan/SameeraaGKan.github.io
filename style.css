@@ -212,7 +212,6 @@ img {
   padding: clamp(1.5rem, 4vw, 3rem);
   overflow-y: auto;
   overflow-x: hidden;
-  scroll-snap-type: y mandatory;
   box-shadow: none;
   background: rgba(251, 248, 241, 0.74);
   backdrop-filter: none;
@@ -222,8 +221,6 @@ img {
 .tab-panel {
   display: block;
   min-height: 100%;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 /* --- HOME VIEW: FROSTED GLASS & FIRECRACKER BURST SYSTEM --- */
