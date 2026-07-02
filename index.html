@@ -263,16 +263,6 @@
           </div>
         </section>
         
-        <!-- INDIVIDUAL POST VIEW -->
-        <section id="blog-post" class="tab-panel" data-tab-panel="blog-post">
-          <div class="blog-post-wrap">
-            <button class="blog-back-btn" type="button" data-tab-link="blog">← Back to Writing</button>
-            <div id="blog-post-content">
-              <!-- Post content injected by JS -->
-            </div>
-          </div>
-        </section>
-
         <section id="contact" class="tab-panel" data-tab-panel="contact">
         <div class="contact-wrapper">
             
@@ -335,6 +325,18 @@
         <h2 id="modalTitle"></h2>
         <p id="modalDescription"></p>
         <div id="modalButtons" class="button-row"></div>
+      </div>
+    </div>
+
+    <div id="blogPostOverlay" class="blog-post-overlay" aria-hidden="true">
+      <div class="blog-post-panel" role="dialog" aria-modal="true" aria-labelledby="blog-post-content">
+        <button class="modal-close blog-post-close" type="button" aria-label="Close post">&times;</button>
+        <div class="blog-post-wrap">
+          <button class="blog-back-btn" type="button">← Back to Writing</button>
+          <div id="blog-post-content">
+            <!-- Post content injected by JS -->
+          </div>
+        </div>
       </div>
     </div>
 

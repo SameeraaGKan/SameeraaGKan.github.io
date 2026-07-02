@@ -2,6 +2,7 @@
 const tabButtons = document.querySelectorAll("[data-tab-link]");
 const tabPanels = document.querySelectorAll("[data-tab-panel]");
 const browserAddress = document.getElementById("browserAddress");
+const stageEl = document.querySelector(".portfolio-stage");
 
 const tabRoutes = {
   home: "sameeraa.kan/home",
@@ -10,14 +11,11 @@ const tabRoutes = {
   highlights: "sameeraa.kan/highlights",
   projects: "sameeraa.kan/projects",
   photography: "sameeraa.kan/photography",
+  blog: "sameeraa.kan/writing",
   contact: "sameeraa.kan/contact",
 };
 
-function showTab(tabName, updateHash = true) {
-  tabPanels.forEach((panel) => {
-    panel.classList.toggle("active", panel.dataset.tabPanel === tabName);
-  });
-
+function setActiveTab(tabName, updateHash = true) {
   tabButtons.forEach((button) => {
     button.classList.toggle("active", button.dataset.tabLink === tabName);
     button.setAttribute("aria-selected", String(button.dataset.tabLink === tabName));
@@ -32,17 +30,41 @@ function showTab(tabName, updateHash = true) {
   }
 }
 
+function scrollToTab(tabName, behavior = "smooth") {
+  const panel = document.querySelector(`[data-tab-panel="${tabName}"]`);
+  if (panel) panel.scrollIntoView({ behavior, block: "start" });
+}
+
 tabButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
-    showTab(button.dataset.tabLink);
+    scrollToTab(button.dataset.tabLink);
   });
 });
+
+// --- SCROLLSPY: highlight the tab for whichever section is in view ---
+if (stageEl && "IntersectionObserver" in window) {
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting);
+      if (visible.length === 0) return;
+
+      visible.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      setActiveTab(visible[0].target.dataset.tabPanel);
+    },
+    { root: stageEl, threshold: [0.25, 0.5, 0.75] }
+  );
+
+  tabPanels.forEach((panel) => sectionObserver.observe(panel));
+}
 
 function initFromHash() {
   const tabName = window.location.hash.replace("#", "") || "home";
   const hasPanel = document.querySelector(`[data-tab-panel="${tabName}"]`);
-  showTab(hasPanel ? tabName : "home", false);
+  const resolvedTab = hasPanel ? tabName : "home";
+
+  scrollToTab(resolvedTab, "auto");
+  setActiveTab(resolvedTab, false);
 }
 
 window.addEventListener("hashchange", initFromHash);
@@ -89,7 +111,7 @@ document.querySelectorAll(".project-card").forEach((card) => {
 
     modal.classList.add("show");
     modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
+    if (stageEl) stageEl.style.overflow = "hidden";
   });
 });
 
@@ -97,7 +119,7 @@ function closeModal() {
   if (modal) {
     modal.classList.remove("show");
     modal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+    if (stageEl) stageEl.style.overflow = "";
   }
 }
 
@@ -374,17 +396,10 @@ if (canvas) {
 // ============================================================
 
 (function initBlog() {
+  const overlay = document.getElementById("blogPostOverlay");
+  if (!overlay) return;
 
-  // --- Open individual post when "Read post →" is clicked ---
-  document.addEventListener("click", function (e) {
-    const btn = e.target.closest("[data-post]");
-    if (!btn) return;
-
-    const postKey = btn.dataset.post;
-    const post = BLOG_POSTS[postKey];
-    if (!post) return;
-
-    // Inject content
+  function openBlogPost(post) {
     const container = document.getElementById("blog-post-content");
     container.innerHTML = `
       <div class="post-header">
@@ -397,39 +412,42 @@ if (canvas) {
       <div class="post-body">${post.content}</div>
     `;
 
-    // Navigate to post panel using your existing tab system
-    switchTab("blog-post");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-
-  // --- "Back to Writing" button ---
-  document.addEventListener("click", function (e) {
-    const btn = e.target.closest(".blog-back-btn");
-    if (!btn) return;
-    switchTab("blog");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-
-  // Helper: reuse your existing tab switching logic
-  function switchTab(tabName) {
-    // Deactivate all panels and tabs
-    document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
-    document.querySelectorAll(".tab-link").forEach(t => t.classList.remove("active"));
-
-    // Activate target panel
-    const panel = document.querySelector(`[data-tab-panel="${tabName}"]`);
-    if (panel) panel.classList.add("active");
-
-    // Activate matching tab button (blog-post shares the blog tab highlight)
-    const tabKey = tabName === "blog-post" ? "blog" : tabName;
-    const tab = document.querySelector(`[data-tab-link="${tabKey}"]`);
-    if (tab) tab.classList.add("active");
-
-    // Update address bar
-    const addressBar = document.getElementById("browserAddress");
-    if (addressBar) {
-      addressBar.textContent = `sameeraa.dev/${tabName.replace("-", "/")}`;
-    }
+    overlay.scrollTop = 0;
+    overlay.classList.add("show");
+    overlay.setAttribute("aria-hidden", "false");
+    if (stageEl) stageEl.style.overflow = "hidden";
   }
+
+  function closeBlogPost() {
+    overlay.classList.remove("show");
+    overlay.setAttribute("aria-hidden", "true");
+    if (stageEl) stageEl.style.overflow = "";
+  }
+
+  // --- Open individual post when "Read post →" is clicked ---
+  document.addEventListener("click", function (e) {
+    const btn = e.target.closest("[data-post]");
+    if (!btn) return;
+
+    const post = BLOG_POSTS[btn.dataset.post];
+    if (!post) return;
+
+    openBlogPost(post);
+  });
+
+  // --- Close via back button, close button, backdrop, or Escape ---
+  document.addEventListener("click", function (e) {
+    if (e.target.closest(".blog-back-btn") || e.target.closest(".blog-post-close")) {
+      closeBlogPost();
+    }
+  });
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closeBlogPost();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && overlay.classList.contains("show")) closeBlogPost();
+  });
 
 })();
