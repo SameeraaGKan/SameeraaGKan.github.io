@@ -69,15 +69,15 @@ img {
 }
 
 .browser-window {
-  height: calc(100vh - 32px);
-  display: flex;
-  flex-direction: column;
+  min-height: calc(100vh - 32px);
   border-radius: 8px;
   overflow: hidden;
 }
 
 .browser-chrome {
-  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
   border-bottom: 1px solid rgba(111, 75, 91, 0.16);
   background: linear-gradient(180deg, rgba(251, 248, 241, 0.92), rgba(238, 245, 239, 0.76));
   backdrop-filter: blur(18px);
@@ -206,12 +206,11 @@ img {
 }
 
 .portfolio-stage {
-  flex: 1 1 auto;
+  min-height: calc(100vh - 143px);
   border: 0;
   border-radius: 0;
   padding: clamp(1.5rem, 4vw, 3rem);
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   box-shadow: none;
   background: rgba(251, 248, 241, 0.74);
   backdrop-filter: none;
@@ -219,14 +218,30 @@ img {
 }
 
 .tab-panel {
+  display: none;
+  min-height: calc(100vh - 207px);
+  animation: panelIn 280ms ease both;
+}
+
+.tab-panel.active {
   display: block;
-  min-height: 100%;
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* --- HOME VIEW: FROSTED GLASS & FIRECRACKER BURST SYSTEM --- */
 .hero-grid.full-glass-burst-hero {
   position: relative;
-  min-height: 100%;
+  min-height: calc(100vh - 207px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -637,31 +652,6 @@ img {
   color: var(--muted);
   line-height: 1.7;
   margin-bottom: 1rem;
-}
-
-/* --- BLOG POST OVERLAY --- */
-.blog-post-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 30;
-  display: none;
-  padding: clamp(1rem, 4vw, 3rem) 1rem;
-  background: rgba(36, 51, 58, 0.48);
-  overflow-y: auto;
-}
-
-.blog-post-overlay.show {
-  display: block;
-}
-
-.blog-post-panel {
-  position: relative;
-  width: min(760px, 100%);
-  margin: 0 auto 2rem;
-  border-radius: 8px;
-  padding: 1.2rem;
-  background: var(--paper-soft);
-  box-shadow: var(--shadow);
 }
 
 /* --- RESPONSIVE MEDIA QUERIES --- */

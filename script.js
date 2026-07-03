@@ -1,11 +1,7 @@
 // --- PORTFOLIO CORE ROUTING & COMPONENT MATRIX ---
 const tabButtons = document.querySelectorAll("[data-tab-link]");
 const tabPanels = document.querySelectorAll("[data-tab-panel]");
-const sections = Array.from(tabPanels);
 const browserAddress = document.getElementById("browserAddress");
-const stageEl = document.querySelector(".portfolio-stage");
-
-let currentSectionIndex = 0;
 
 const tabRoutes = {
   home: "sameeraa.kan/home",
@@ -14,18 +10,18 @@ const tabRoutes = {
   highlights: "sameeraa.kan/highlights",
   projects: "sameeraa.kan/projects",
   photography: "sameeraa.kan/photography",
-  blog: "sameeraa.kan/writing",
   contact: "sameeraa.kan/contact",
 };
 
-function setActiveTab(tabName, updateHash = true) {
+function showTab(tabName, updateHash = true) {
+  tabPanels.forEach((panel) => {
+    panel.classList.toggle("active", panel.dataset.tabPanel === tabName);
+  });
+
   tabButtons.forEach((button) => {
     button.classList.toggle("active", button.dataset.tabLink === tabName);
     button.setAttribute("aria-selected", String(button.dataset.tabLink === tabName));
   });
-
-  const sectionIndex = sections.findIndex((panel) => panel.dataset.tabPanel === tabName);
-  if (sectionIndex !== -1) currentSectionIndex = sectionIndex;
 
   if (browserAddress) {
     browserAddress.textContent = tabRoutes[tabName] || tabRoutes.home;
@@ -36,90 +32,17 @@ function setActiveTab(tabName, updateHash = true) {
   }
 }
 
-function scrollToTab(tabName, behavior = "smooth") {
-  const panel = document.querySelector(`[data-tab-panel="${tabName}"]`);
-  if (panel) panel.scrollIntoView({ behavior, block: "start" });
-}
-
 tabButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
-    scrollToTab(button.dataset.tabLink);
+    showTab(button.dataset.tabLink);
   });
 });
-
-// --- SCROLLSPY: highlight the tab for whichever section is in view ---
-if (stageEl && "IntersectionObserver" in window) {
-  const sectionObserver = new IntersectionObserver(
-    (entries) => {
-      const visible = entries.filter((entry) => entry.isIntersecting);
-      if (visible.length === 0) return;
-
-      visible.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-      setActiveTab(visible[0].target.dataset.tabPanel);
-    },
-    { root: stageEl, threshold: [0.25, 0.5, 0.75] }
-  );
-
-  tabPanels.forEach((panel) => sectionObserver.observe(panel));
-}
-
-// --- GEAR-SNAP SCROLL: one wheel gesture jumps a whole section, ---
-// --- but scrolls normally inside a section taller than the viewport ---
-if (stageEl) {
-  let isSnapping = false;
-  let snapReleaseTimer;
-
-  function goToSectionIndex(index) {
-    if (index < 0 || index >= sections.length) return;
-
-    isSnapping = true;
-    sections[index].scrollIntoView({ behavior: "smooth", block: "start" });
-    setActiveTab(sections[index].dataset.tabPanel);
-
-    clearTimeout(snapReleaseTimer);
-    snapReleaseTimer = setTimeout(() => {
-      isSnapping = false;
-    }, 700);
-  }
-
-  stageEl.addEventListener(
-    "wheel",
-    (event) => {
-      if (isSnapping) {
-        event.preventDefault();
-        return;
-      }
-
-      const panel = sections[currentSectionIndex];
-      if (!panel) return;
-
-      const panelRect = panel.getBoundingClientRect();
-      const stageRect = stageEl.getBoundingClientRect();
-      const edgeTolerance = 6;
-      const atSectionTop = panelRect.top >= stageRect.top - edgeTolerance;
-      const atSectionBottom = panelRect.bottom <= stageRect.bottom + edgeTolerance;
-
-      if (event.deltaY > 0 && atSectionBottom && currentSectionIndex < sections.length - 1) {
-        event.preventDefault();
-        goToSectionIndex(currentSectionIndex + 1);
-      } else if (event.deltaY < 0 && atSectionTop && currentSectionIndex > 0) {
-        event.preventDefault();
-        goToSectionIndex(currentSectionIndex - 1);
-      }
-      // otherwise: let the section scroll normally, its content is taller than the viewport
-    },
-    { passive: false }
-  );
-}
 
 function initFromHash() {
   const tabName = window.location.hash.replace("#", "") || "home";
   const hasPanel = document.querySelector(`[data-tab-panel="${tabName}"]`);
-  const resolvedTab = hasPanel ? tabName : "home";
-
-  scrollToTab(resolvedTab, "auto");
-  setActiveTab(resolvedTab, false);
+  showTab(hasPanel ? tabName : "home", false);
 }
 
 window.addEventListener("hashchange", initFromHash);
@@ -166,7 +89,7 @@ document.querySelectorAll(".project-card").forEach((card) => {
 
     modal.classList.add("show");
     modal.setAttribute("aria-hidden", "false");
-    if (stageEl) stageEl.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
   });
 });
 
@@ -174,7 +97,7 @@ function closeModal() {
   if (modal) {
     modal.classList.remove("show");
     modal.setAttribute("aria-hidden", "true");
-    if (stageEl) stageEl.style.overflow = "";
+    document.body.style.overflow = "";
   }
 }
 
@@ -451,10 +374,17 @@ if (canvas) {
 // ============================================================
 
 (function initBlog() {
-  const overlay = document.getElementById("blogPostOverlay");
-  if (!overlay) return;
 
-  function openBlogPost(post) {
+  // --- Open individual post when "Read post →" is clicked ---
+  document.addEventListener("click", function (e) {
+    const btn = e.target.closest("[data-post]");
+    if (!btn) return;
+
+    const postKey = btn.dataset.post;
+    const post = BLOG_POSTS[postKey];
+    if (!post) return;
+
+    // Inject content
     const container = document.getElementById("blog-post-content");
     container.innerHTML = `
       <div class="post-header">
@@ -467,42 +397,39 @@ if (canvas) {
       <div class="post-body">${post.content}</div>
     `;
 
-    overlay.scrollTop = 0;
-    overlay.classList.add("show");
-    overlay.setAttribute("aria-hidden", "false");
-    if (stageEl) stageEl.style.overflow = "hidden";
-  }
+    // Navigate to post panel using your existing tab system
+    switchTab("blog-post");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
 
-  function closeBlogPost() {
-    overlay.classList.remove("show");
-    overlay.setAttribute("aria-hidden", "true");
-    if (stageEl) stageEl.style.overflow = "";
-  }
-
-  // --- Open individual post when "Read post →" is clicked ---
+  // --- "Back to Writing" button ---
   document.addEventListener("click", function (e) {
-    const btn = e.target.closest("[data-post]");
+    const btn = e.target.closest(".blog-back-btn");
     if (!btn) return;
-
-    const post = BLOG_POSTS[btn.dataset.post];
-    if (!post) return;
-
-    openBlogPost(post);
+    switchTab("blog");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
-  // --- Close via back button, close button, backdrop, or Escape ---
-  document.addEventListener("click", function (e) {
-    if (e.target.closest(".blog-back-btn") || e.target.closest(".blog-post-close")) {
-      closeBlogPost();
+  // Helper: reuse your existing tab switching logic
+  function switchTab(tabName) {
+    // Deactivate all panels and tabs
+    document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+    document.querySelectorAll(".tab-link").forEach(t => t.classList.remove("active"));
+
+    // Activate target panel
+    const panel = document.querySelector(`[data-tab-panel="${tabName}"]`);
+    if (panel) panel.classList.add("active");
+
+    // Activate matching tab button (blog-post shares the blog tab highlight)
+    const tabKey = tabName === "blog-post" ? "blog" : tabName;
+    const tab = document.querySelector(`[data-tab-link="${tabKey}"]`);
+    if (tab) tab.classList.add("active");
+
+    // Update address bar
+    const addressBar = document.getElementById("browserAddress");
+    if (addressBar) {
+      addressBar.textContent = `sameeraa.dev/${tabName.replace("-", "/")}`;
     }
-  });
-
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) closeBlogPost();
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && overlay.classList.contains("show")) closeBlogPost();
-  });
+  }
 
 })();
