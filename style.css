@@ -270,6 +270,7 @@ img {
   align-items: center;
   gap: 0.6rem;
   max-width: 850px;
+  padding-top: 2.5rem;
   pointer-events: none;
   text-align: center;
 }
