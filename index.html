@@ -1,341 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sameeraa Kandalgaonkar Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mediaqueries.css" />
-  </head>
-  <body>
-    <div class="page-shell">
-      <div class="browser-window">
-        <header class="browser-chrome" aria-label="Portfolio browser">
-          <div class="browser-tabs" role="tablist" aria-label="Portfolio sections">
-            <button class="tab-link active" type="button" data-tab-link="home" role="tab">Home</button>
-            <button class="tab-link" type="button" data-tab-link="about" role="tab">About</button>
-            <button class="tab-link" type="button" data-tab-link="skills" role="tab">Skills</button>
-            <button class="tab-link" type="button" data-tab-link="highlights" role="tab">Highlights</button>
-            <button class="tab-link" type="button" data-tab-link="projects" role="tab">Projects</button>
-            <button class="tab-link" type="button" data-tab-link="photography" role="tab">Photography</button>
-            <button class="tab-link" type="button" data-tab-link="blog" role="tab">Blog</button>
-            <button class="tab-link" type="button" data-tab-link="contact" role="tab">Contact</button>
-          </div>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sameeraa Kandalgaonkar — Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink: #0D1B1E;
+    --ink-2: #122528;
+    --parchment: #F2EAD8;
+    --parchment-dim: #E6DCC4;
+    --koi: #E2622D;
+    --jade: #3A6B5C;
+    --text-dark: #14231F;
+    --text-cream: #F2EAD8;
+    --text-muted: rgba(242,234,216,0.6);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{background:var(--ink); color:var(--text-cream); font-family:'Plus Jakarta Sans', sans-serif; scroll-behavior:smooth; overflow-x:hidden;}
+  a{color:inherit; text-decoration:none;}
 
-          <div class="browser-toolbar">
-            <div class="window-controls" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            <div class="address-bar">
-              <span class="lock-dot" aria-hidden="true"></span>
-              <span id="browserAddress">sameeraa.dev/home</span>
-            </div>
-            <a class="brand" href="#home" data-tab-link="home" aria-label="Home">
-              <span>SK</span>
-            </a>
-          </div>
-        </header>
+  ::selection{background:var(--koi); color:var(--ink);}
 
-        <main class="portfolio-stage">
-        <section id="home" class="tab-panel active" data-tab-panel="home">
-        <div class="hero-grid full-glass-burst-hero">
-            
-            <canvas id="burstCanvas"></canvas>
-            
-            <div class="hero-copy">
-            <h1>Hi, Sameeraa here</h1>
-            <span>Dallas, Texas</span>
-            <p class="eyebrow">Computer Science Student &amp; Developer</p>
-            
-            <div class="button-row">
-                <button class="btn primary" type="button" onclick="window.open('./assets/Sameeraa_Kandalgaonkar_excellent_resume.pdf')">
-                Resume
-                </button>
-                <button class="btn secondary" type="button" data-tab-link="contact">Contact</button>
-            </div>
-            </div>
+  /* Nav */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:28px 48px; mix-blend-mode:difference;
+  }
+  .nav-mark{font-family:'Fraunces', serif; font-size:20px; font-weight:600; letter-spacing:0.02em;}
+  .nav-links{display:flex; gap:36px; font-size:13px; letter-spacing:0.08em; text-transform:uppercase;}
+  .nav-links a{opacity:0.7; transition:opacity .25s ease;}
+  .nav-links a:hover{opacity:1;}
 
-        </div>
-        </section>
+  /* Hero */
+  .hero{
+    position:relative; min-height:100vh; display:flex; align-items:center;
+    padding:0 48px; overflow:hidden;
+  }
+  #ripple-canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0;}
+  .hero-inner{position:relative; z-index:2; max-width:760px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--koi); margin-bottom:22px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:''; width:7px; height:7px; border-radius:50%; background:var(--koi); display:inline-block; box-shadow:0 0 0 4px rgba(226,98,45,0.2);}
+  h1.display{
+    font-family:'Fraunces', serif; font-weight:500; font-size:clamp(44px, 7vw, 84px);
+    line-height:1.02; letter-spacing:-0.01em; margin-bottom:26px;
+  }
+  h1.display em{font-style:italic; font-weight:300; color:var(--parchment-dim);}
+  .hero-sub{
+    font-size:18px; line-height:1.6; color:var(--text-muted); max-width:520px; margin-bottom:40px;
+  }
+  .btn-row{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    padding:15px 30px; border-radius:2px; font-size:14px; font-weight:600;
+    letter-spacing:0.02em; cursor:pointer; transition:transform .25s ease, background .25s ease;
+    border:1px solid transparent;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--koi); color:var(--ink);}
+  .btn-primary:hover{background:#f27343;}
+  .btn-ghost{border-color:rgba(242,234,216,0.3); color:var(--text-cream);}
+  .btn-ghost:hover{border-color:var(--text-cream);}
 
-        <section id="about" class="tab-panel" data-tab-panel="about">
-          <div class="section-heading">
-            <p class="eyebrow">About Me</p>
-            <h2>A computer science student building useful, human-centered systems.</h2>
-          </div>
-          <div class="split-layout">
-            <article class="content-card">
-              <h3>Experience</h3>
-              <p>Web Content Assistant, ACM Officer, WeHack Development Coordinator, and Software Engineering Intern.</p>
-            </article>
-            <article class="content-card">
-              <h3>Education</h3>
-              <p>B.S. Computer Science with a Minor in Business Administration at The University of Texas at Dallas.</p>
-            </article>
-            <article class="content-card wide">
-              <h3>Focus</h3>
-              <p>
-                I build full-stack web applications and machine learning systems, from React frontends to FastAPI/PostgreSQL backends.
-                I care about clean UI and code that's actually maintainable, not just functional.
-              </p>
-            </article>
-          </div>
-        </section>
+  .scroll-cue{
+    position:absolute; bottom:40px; left:48px; z-index:2;
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-muted);
+    display:flex; align-items:center; gap:10px;
+  }
+  .scroll-cue .line{width:36px; height:1px; background:var(--text-muted); position:relative; overflow:hidden;}
+  .scroll-cue .line::after{content:''; position:absolute; left:-100%; top:0; width:100%; height:100%; background:var(--koi); animation:flow 2.2s linear infinite;}
+  @keyframes flow{ to{left:100%;} }
 
-        <section id="skills" class="tab-panel" data-tab-panel="skills">
-        <div class="section-heading">
-            <p class="eyebrow">Technical Skills</p>
-            <h2>Tools I use to design, build, and ship.</h2>
-        </div>
-        <div class="skills-board">
-            <article class="content-card">
-            <h3>Programming</h3>
-            <div class="skill-list">
-                <span>C++</span><span>C</span><span>Python</span><span>JavaScript</span><span>Java</span><span>SQL</span><span>R</span><span>HTML</span><span>CSS</span>
-            </div>
-            </article>
-            <article class="content-card">
-            <h3>Frameworks & Libraries</h3>
-            <div class="skill-list">
-                <span>React</span><span>Nuxt.js</span><span>Node.js</span><span>FastAPI</span><span>Tailwind CSS</span><span>Vite</span><span>TresJS</span><span>Three.js</span>
-            </div>
-            </article>
-            <article class="content-card">
-            <h3>Data Science & AI</h3>
-            <div class="skill-list">
-                <span>Pandas</span><span>Scikit-learn</span><span>XGBoost</span><span>Matplotlib</span><span>Tableau</span><span>Excel</span>
-            </div>
-            </article>
-            <article class="content-card">
-            <h3>Design & 3D Modeling</h3>
-            <div class="skill-list">
-                <span>Figma</span><span>Blender</span>
-            </div>
-            </article>
-            <article class="content-card">
-            <h3>Dev Tools & Architecture</h3>
-            <div class="skill-list">
-                <span>Git</span><span>GitHub</span><span>PostgreSQL</span><span>MongoDB</span><span>Azure</span><span>Socket Programming</span><span>Multi-threaded Systems</span><span>System Customization (Windhawk)</span>
-            </div>
-            </article>
-        </div>
-        </section>
+  /* Section shell */
+  section{position:relative; z-index:2; padding:140px 48px;}
+  .section-head{max-width:640px; margin-bottom:64px;}
+  .section-tag{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--jade); background:rgba(58,107,92,0.18); padding:5px 12px; border-radius:20px; display:inline-block; margin-bottom:18px;}
+  .section-title{font-family:'Fraunces', serif; font-weight:500; font-size:clamp(30px,4vw,44px); line-height:1.15;}
 
-        <section id="highlights" class="tab-panel" data-tab-panel="highlights">
-          <div class="section-heading">
-            <p class="eyebrow">Professional Highlights</p>
-            <h2>Selected roles and impact.</h2>
-          </div>
-          <div class="timeline-grid">
-            <article class="content-card">
-              <p class="meta">Naveen Jindal School of Management | Nov. 2025 - Present</p>
-              <h3>Web Content Assistant</h3>
-              <p>Grew organic traffic 70% through metadata cleanup, internal linking, accessibility updates, and site architecture improvements.</p>
-            </article>
-            <article class="content-card">
-              <p class="meta">Association for Computing Machinery | Jun. 2025 - Present</p>
-              <h3>ACM Officer, Community Archives</h3>
-              <p>Curated 500+ digital assets, improved archival discoverability, and reduced content review cycles 20% with standardized editorial workflows.</p>
-            </article>
-            <article class="content-card">
-              <p class="meta">Women in Engineering Hackathon | Jun. 2025 - Present</p>
-              <h3>Development Coordinator</h3>
-              <p>Built and deployed a React event platform supporting 600+ concurrent users and integrated sponsor assets for a consistent launch.</p>
-            </article>
-            <article class="content-card">
-              <p class="meta">Predica Inc. | Sept. 2024 - Dec. 2024</p>
-              <h3>Software Engineering Intern</h3>
-              <p>Reduced frontend build times 40%, developed 15+ reusable UI components, and integrated RESTful APIs for dynamic React application data.</p>
-            </article>
-            <article class="content-card">
-              <p class="meta">Major League Hacking | Apr. 2024</p>
-              <h3>Best Domain Name</h3>
-              <p>Received Best Domain Name from GoDaddy Registry at WEHack 2024 for Enchan Tobor, a freshman onboarding platform for exploring campus organizations.</p>
-            </article>
-            <article class="content-card">
-              <p class="meta">Project Work | 2025 - 2026</p>
-              <h3>Systems, Data & Full Stack</h3>
-              <p>Built projects across 3D rendering, socket programming, delivery tracking, clustering, and responsive web interfaces.</p>
-            </article>
-          </div>
-        </section>
+  /* About - floating cards */
+  .about-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:28px; max-width:1100px;}
+  .card{
+    background:var(--parchment); color:var(--text-dark); border-radius:6px;
+    padding:38px; box-shadow:0 30px 60px -20px rgba(0,0,0,0.5);
+    transition:transform .35s cubic-bezier(.2,.8,.2,1);
+  }
+  .card:hover{transform:translateY(-6px);}
+  .card h3{font-family:'Fraunces', serif; font-size:22px; font-weight:600; margin-bottom:14px;}
+  .card p{font-size:15px; line-height:1.65; color:rgba(20,35,31,0.75);}
+  .card.wide{grid-column:1 / -1;}
+  .tag-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:20px;}
+  .tag{font-family:'IBM Plex Mono', monospace; font-size:12px; padding:6px 12px; background:rgba(20,35,31,0.06); border-radius:20px; color:var(--text-dark);}
 
-        <section id="projects" class="tab-panel" data-tab-panel="projects">
-          <div class="section-heading">
-            <p class="eyebrow">Projects</p>
-            <h2>Recent builds and hackathon work.</h2>
-          </div>
-          <div class="project-grid">
-            <article class="project-card" data-title="Enchan Tobor - WEHack 2024" data-tools="HTML, CSS, JavaScript, R" data-description="A freshman onboarding website that introduces engineering students to 400+ campus organizations. Awarded Best Domain Name from GoDaddy Registry at WEHack 2024." data-image="./assets/project-1.png" data-github="https://github.com/SameeraaGKan/EnchanTobor.git" data-devpost="https://devpost.com/software/enchantobor">
-              <img src="./assets/project-1.png" alt="Enchan Tobor Project" />
-              <h3>Enchan Tobor</h3>
-              <p>Freshman onboarding platform for exploring campus organizations.</p>
-            </article>
-            <article class="project-card" data-title="BuildYourRide - 3D Vehicle Customizer" data-tools="Nuxt.js, MongoDB, TresJS, Blender, Figma" data-description="Developed a 3D vehicle configurator using 50+ real-world models, optimized assets for consistent 60 FPS rendering, and designed an intuitive UI in Figma before implementing it in Nuxt.js." data-image="./assets/project-4.png" data-github="https://github.com/Spikestar05/BYR-BuildYourRide.git" data-devpost="https://devpost.com/software/buildyourride">
-              <img src="./assets/project-4.png" alt="Build Your Ride" />
-              <h3>Build Your Ride</h3>
-              <p>3D vehicle configurator with optimized real-time rendering.</p>
-            </article>
-            <article class="project-card" data-title="NexusMath - Multi-threaded Networking Suite" data-tools="Java, Multi-threading, Socket Programming" data-description="Built a multi-threaded Java server that handles concurrent client requests through a custom socket protocol, including a thread-safe task queue and optimized thread pool handling." data-image="./assets/project-6.svg">
-              <img src="./assets/project-6.svg" alt="NexusMath project" />
-              <h3>NexusMath</h3>
-              <p>Multi-threaded Java networking suite with socket protocol design.</p>
-            </article>
-            <article class="project-card" data-title="UTDDash - Full-Stack Delivery Platform" data-tools="FastAPI, PostgreSQL, React" data-description="Developed a FastAPI and PostgreSQL backend for real-time order processing, secure delivery tracking, QR-based verification, and RESTful frontend/backend communication." data-image="./assets/project-7.svg">
-              <img src="./assets/project-7.svg" alt="UTDDash project" />
-              <h3>UTDDash</h3>
-              <p>Full-stack delivery tracking platform with QR verification.</p>
-            </article>
-            <article class="project-card" data-title="K-Means Jaccard HealthCluster" data-tools="Python, Pandas, Matplotlib" data-description="Clustered high-volume health tweets with K-means and Jaccard similarity, then visualized thematic trends with Matplotlib to validate model performance." data-image="./assets/project-8.svg">
-              <img src="./assets/project-8.svg" alt="K-Means Jaccard HealthCluster project" />
-              <h3>HealthCluster</h3>
-              <p>Health tweet clustering with K-means and Jaccard similarity.</p>
-            </article>
-            <article class="project-card" data-title="CodeScape" data-tools="HTML, CSS, JavaScript" data-description="An algorithm escape room where players solve coding puzzles based on recursion, encryption, sorting, and data structures." data-image="./assets/project-3.png" data-github="https://github.com/SameeraaGKan/CodeScape_the_Algorithm_escape_room.git">
-              <img src="./assets/project-3.png" alt="CodeScape" />
-              <h3>CodeScape</h3>
-              <p>Interactive adventure game for learning CS concepts.</p>
-            </article>
-            <article class="project-card" data-title="Chillax" data-tools="Figma, Browser Extension" data-description="A browser extension concept that helps remote and hybrid workers take mindful breaks and reduce burnout." data-image="./assets/project-5.png" data-figma="https://www.figma.com/proto/EXORHHXqLivqmtZ2On6hol/Chillax?node-id=82-6&t=GD4X1IFnaozAGBIk-1" data-devpost="https://devpost.com/software/designathon-project-twlxvs">
-              <img src="./assets/project-5.png" alt="Chillax" />
-              <h3>Chillax</h3>
-              <p>Mindful break reminders for remote work.</p>
-            </article>
-            <article class="project-card" data-title="2048 Game" data-tools="Python" data-description="A Python recreation of 2048 focused on grid-based game logic, algorithm design, and interface fundamentals." data-image="./assets/project-2.png" data-github="https://github.com/SameeraaGKan/2048-game.git">
-              <img src="./assets/project-2.png" alt="2048 Game" />
-              <h3>2048 Game</h3>
-              <p>Python implementation of the sliding puzzle game.</p>
-            </article>
-          </div>
-        </section>
+  /* Projects */
+  .project-list{max-width:1100px; display:flex; flex-direction:column;}
+  .project-row{
+    display:grid; grid-template-columns:80px 1fr 260px; align-items:center; gap:24px;
+    padding:32px 0; border-top:1px solid rgba(242,234,216,0.12);
+    transition:padding-left .3s ease;
+  }
+  .project-row:last-child{border-bottom:1px solid rgba(242,234,216,0.12);}
+  .project-row:hover{padding-left:12px;}
+  .project-num{font-family:'IBM Plex Mono', monospace; color:var(--text-muted); font-size:14px;}
+  .project-title{font-family:'Fraunces', serif; font-size:26px; font-weight:500;}
+  .project-title span{display:block; font-family:'Plus Jakarta Sans', sans-serif; font-size:14px; font-weight:400; color:var(--text-muted); margin-top:6px;}
+  .project-tools{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--jade); text-align:right;}
 
-        <section id="photography" class="tab-panel" data-tab-panel="photography">
-          <div class="section-heading">
-            <p class="eyebrow">Photography</p>
-            <h2>A small gallery, now inside the main portfolio.</h2>
-          </div>
-          <div class="photo-strip">
-            <figure class="photo-tile"><img src="./assets/nature1.jpeg" alt="Nature I" /><figcaption>Golden hour, Dallas</figcaption></figure>
-            <figure class="photo-tile"><img src="./assets/nature2.jpeg" alt="Nature II" /><figcaption>Trail light</figcaption></figure>
-            <figure class="photo-tile"><img src="./assets/nature3.jpeg" alt="Nature III" /><figcaption>Water and stone</figcaption></figure>
-            <figure class="photo-tile"><img src="./assets/nature4.jpeg" alt="Nature IV" /><figcaption>Skyline at dusk</figcaption></figure>
-            <figure class="photo-tile"><img src="./assets/nature5.jpeg" alt="Nature V" /><figcaption>Morning fog</figcaption></figure>
-            <figure class="photo-tile"><img src="./assets/nature6.jpeg" alt="Nature VI" /><figcaption>Overlook</figcaption></figure>
-            <figure class="photo-tile"><img src="./assets/nature7.jpeg" alt="Nature VII" /><figcaption>Storm clouds rolling in</figcaption></figure>
-            <figure class="photo-tile"><img src="./assets/nature8.jpeg" alt="Nature VIII" /><figcaption>Close-up detail</figcaption></figure>
-          </div>
-        </section>
+  /* Contact */
+  .contact-title{font-family:'Fraunces', serif; font-weight:500; font-size:clamp(36px,6vw,64px); max-width:640px; line-height:1.1;}
+  .contact-links{display:flex; gap:32px; margin-top:40px; flex-wrap:wrap;}
+  .contact-links a{font-family:'IBM Plex Mono', monospace; font-size:14px; border-bottom:1px solid rgba(242,234,216,0.3); padding-bottom:4px; transition:border-color .25s ease, color .25s ease;}
+  .contact-links a:hover{border-color:var(--koi); color:var(--koi);}
 
-        <!-- ============================================================
-     STEP 2: Add these two sections inside .portfolio-stage
-     (paste after the photography section, before the contact section)
-     ============================================================ -->
- 
-        <!-- BLOG INDEX -->
-        <section id="blog" class="tab-panel" data-tab-panel="blog">
-          <div class="section-heading">
-            <p class="eyebrow">Writing</p>
-            <h2>Notes on tech, economics, and things I'm learning.</h2>
-          </div>
-          <div class="blog-grid">
-        
-            <article class="blog-card" data-post="nvidia-supercycle">
-              <div class="blog-card-meta">
-                <span class="blog-tag">AI Economics</span>
-                <span class="blog-date">June 2026</span>
-              </div>
-              <h3>$1,000 in NVIDIA in 1999 → $5.1M Today. Here's Why That's Not a Luck Story.</h3>
-              <p>I came across Stanford's MS&E 435 — Economics of the AI Supercycle — and it completely reframed how I think about AI. The NVIDIA story isn't about getting lucky. It's about what happens when a company keeps sitting at the constraint of a supercycle.</p>
-              <button class="blog-read-btn" type="button" data-post="nvidia-supercycle">Read post →</button>
-            </article>
-        
-          </div>
-        </section>
-        
-        <!-- INDIVIDUAL POST VIEW -->
-        <section id="blog-post" class="tab-panel" data-tab-panel="blog-post">
-          <div class="blog-post-wrap">
-            <button class="blog-back-btn" type="button" data-tab-link="blog">← Back to Writing</button>
-            <div id="blog-post-content">
-              <!-- Post content injected by JS -->
-            </div>
-          </div>
-        </section>
+  footer{padding:32px 48px; font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-muted); display:flex; justify-content:space-between;}
 
-        <section id="contact" class="tab-panel" data-tab-panel="contact">
-        <div class="contact-wrapper">
-            
-            <div class="contact-cta">
-            <p class="eyebrow">Get in touch</p>
-            <h2>Let’s connect.</h2>
-            <p class="contact-desc">
-                Whether you want to talk full-stack development, machine learning, 3D web graphics, or potential internship opportunities—my inbox is always open.
-            </p>
-            <a href="mailto:sameeraagk883@gmail.com" class="btn primary contact-email-btn">
-                Say Hello
-            </a>
-            </div>
+  @media (max-width:800px){
+    nav{padding:22px 24px;}
+    .nav-links{display:none;}
+    section{padding:90px 24px;}
+    .about-grid{grid-template-columns:1fr;}
+    .project-row{grid-template-columns:1fr; gap:8px;}
+    .project-tools{text-align:left;}
+  }
+</style>
+</head>
+<body>
 
-            <div class="contact-network">
-            <a href="mailto:sameeraagk883@gmail.com" class="network-tile">
-                <div class="tile-icon">✉️</div>
-                <div class="tile-info">
-                <h3>Email</h3>
-                <p>sameeraagk883@gmail.com</p>
-                </div>
-            </a>
+<nav>
+  <div class="nav-mark">SK</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
-            <a href="https://www.linkedin.com/in/sameeraakan118/" target="_blank" rel="noopener noreferrer" class="network-tile">
-                <div class="tile-icon">💼</div>
-                <div class="tile-info">
-                <h3>LinkedIn</h3>
-                <p>Connect with me</p>
-                </div>
-            </a>
+<section class="hero" id="home">
+  <canvas id="ripple-canvas"></canvas>
+  <div class="hero-inner">
+    <div class="eyebrow">Dallas, Texas — Open to 2027 New Grad Roles</div>
+    <h1 class="display">Sameeraa<br><em>Kandalgaonkar</em></h1>
+    <p class="hero-sub">Computer science student building full-stack systems and ML-driven tools — with a design-first eye for how they should feel to use.</p>
+    <div class="btn-row">
+      <button class="btn btn-primary">View Résumé</button>
+      <button class="btn btn-ghost">Get in Touch</button>
+    </div>
+  </div>
+  <div class="scroll-cue"><span class="line"></span> SCROLL</div>
+</section>
 
-            <a href="https://github.com/SameeraaGKan" target="_blank" rel="noopener noreferrer" class="network-tile">
-                <div class="tile-icon">💻</div>
-                <div class="tile-info">
-                <h3>GitHub</h3>
-                <p>Check out my builds</p>
-                </div>
-            </a>
-
-            <a href="https://devpost.com/SameeraaGKan" target="_blank" rel="noopener noreferrer" class="network-tile">
-                <div class="tile-icon">🚀</div>
-                <div class="tile-info">
-                <h3>Devpost</h3>
-                <p>Hackathon projects</p>
-                </div>
-            </a>
-            </div>
-
-        </div>
-        </section>
-        </main>
+<section id="about">
+  <div class="section-head">
+    <span class="section-tag">About</span>
+    <h2 class="section-title">Systems that are useful and human-centered — not just functional.</h2>
+  </div>
+  <div class="about-grid">
+    <div class="card">
+      <h3>Focus</h3>
+      <p>I build across the stack — React and Nuxt frontends, FastAPI and PostgreSQL backends, and ML pipelines with scikit-learn and XGBoost. Most recently: a production multiplayer app, a fine-tuned classifier, and a RAG pipeline over real student data.</p>
+      <div class="tag-row">
+        <span class="tag">React</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">Scikit-learn</span>
       </div>
     </div>
-
-    <div id="projectModal" class="modal" aria-hidden="true">
-      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <button class="modal-close" type="button" aria-label="Close project details">&times;</button>
-        <img id="modalImage" src="" alt="" />
-        <p id="modalTools" class="meta"></p>
-        <h2 id="modalTitle"></h2>
-        <p id="modalDescription"></p>
-        <div id="modalButtons" class="button-row"></div>
-      </div>
+    <div class="card">
+      <h3>Education</h3>
+      <p>B.S. Computer Science, Minor in Business Administration — The University of Texas at Dallas. Graduating May 2027.</p>
     </div>
+    <div class="card wide">
+      <h3>Currently</h3>
+      <p>Development Coordinator at WeHack, Archives Officer at ACM UTD, and Director of the Ladies in Tech Mentoring Program — while shipping side projects and applying to Forward Deployed Engineering roles for 2027.</p>
+    </div>
+  </div>
+</section>
 
-    <script src="blog-posts.js"></script>
-    <script src="script.js"></script>
-  </body>
+<section id="work">
+  <div class="section-head">
+    <span class="section-tag">Selected Work</span>
+    <h2 class="section-title">A few things I've shipped.</h2>
+  </div>
+  <div class="project-list">
+    <div class="project-row">
+      <span class="project-num">01</span>
+      <div class="project-title">CodeEscape<span>Multiplayer CS escape room, built and shipped solo</span></div>
+      <div class="project-tools">Next.js · Supabase · Claude API</div>
+    </div>
+    <div class="project-row">
+      <span class="project-num">02</span>
+      <div class="project-title">UTDDash<span>Full-stack delivery tracking with QR verification</span></div>
+      <div class="project-tools">FastAPI · PostgreSQL · React</div>
+    </div>
+    <div class="project-row">
+      <span class="project-num">03</span>
+      <div class="project-title">Build Your Ride<span>3D vehicle configurator, real-time rendering</span></div>
+      <div class="project-tools">Nuxt.js · TresJS · Blender</div>
+    </div>
+    <div class="project-row">
+      <span class="project-num">04</span>
+      <div class="project-title">HealthCluster<span>Clustering health tweets with K-means & Jaccard similarity</span></div>
+      <div class="project-tools">Python · Pandas · Matplotlib</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-head">
+    <span class="section-tag">Get in Touch</span>
+  </div>
+  <h2 class="contact-title">Let's build<br>something worth<br>shipping.</h2>
+  <div class="contact-links">
+    <a href="mailto:sameeraagk883@gmail.com">Email</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">GitHub</a>
+    <a href="#">Devpost</a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Sameeraa Kandalgaonkar</span>
+  <span>Dallas, TX</span>
+</footer>
+
+<script>
+  // Subtle koi-pond ripple effect following the cursor, hero section only
+  const canvas = document.getElementById('ripple-canvas');
+  const ctx = canvas.getContext('2d');
+  let ripples = [];
+  let w, h;
+
+  function resize(){
+    const hero = document.getElementById('home');
+    w = canvas.width = hero.offsetWidth;
+    h = canvas.height = hero.offsetHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function addRipple(x, y){
+    ripples.push({x, y, radius:0, alpha:0.35});
+  }
+
+  let lastMove = 0;
+  document.getElementById('home').addEventListener('mousemove', (e)=>{
+    const now = Date.now();
+    if(now - lastMove < 90) return; // throttle
+    lastMove = now;
+    const rect = canvas.getBoundingClientRect();
+    addRipple(e.clientX - rect.left, e.clientY - rect.top);
+  });
+
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    // faint ambient gradient
+    const grad = ctx.createRadialGradient(w*0.7, h*0.3, 0, w*0.7, h*0.3, w*0.8);
+    grad.addColorStop(0, 'rgba(58,107,92,0.10)');
+    grad.addColorStop(1, 'rgba(13,27,30,0)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0,0,w,h);
+
+    ripples.forEach(r => {
+      ctx.beginPath();
+      ctx.arc(r.x, r.y, r.radius, 0, Math.PI*2);
+      ctx.strokeStyle = `rgba(226,98,45,${r.alpha})`;
+      ctx.lineWidth = 1.4;
+      ctx.stroke();
+      r.radius += 1.4;
+      r.alpha *= 0.965;
+    });
+    ripples = ripples.filter(r => r.alpha > 0.02);
+    requestAnimationFrame(draw);
+  }
+  draw();
+</script>
+
+</body>
 </html>
