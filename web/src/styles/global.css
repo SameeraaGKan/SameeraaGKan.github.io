@@ -1,0 +1,138 @@
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: var(--ink);
+  color: var(--text-cream);
+  font-family: var(--font-body);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: var(--koi);
+  color: var(--ink);
+}
+
+.section {
+  position: relative;
+  z-index: 2;
+  padding: 96px 48px;
+}
+
+.section-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.section-head {
+  max-width: 640px;
+  margin-bottom: 48px;
+}
+
+.section-tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--jade);
+  background: rgba(58, 107, 92, 0.18);
+  padding: 5px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 18px;
+}
+
+.section-jade .section-tag {
+  color: var(--koi-bright);
+  background: rgba(226, 98, 45, 0.16);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.15;
+}
+
+.btn {
+  display: inline-block;
+  padding: 15px 30px;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  border: 1px solid transparent;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--koi);
+  color: var(--ink);
+}
+
+.btn-primary:hover {
+  background: var(--koi-bright);
+}
+
+.btn-ghost {
+  border-color: rgba(242, 234, 216, 0.5);
+  color: var(--text-cream);
+  background: rgba(242, 234, 216, 0.06);
+  font-weight: 700;
+}
+
+.btn-ghost:hover {
+  border-color: var(--text-cream);
+  background: rgba(242, 234, 216, 0.14);
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 6px 12px;
+  background: rgba(242, 234, 216, 0.1);
+  border: 1px solid rgba(242, 234, 216, 0.16);
+  border-radius: 20px;
+  color: var(--text-cream);
+}
+
+@media (max-width: 800px) {
+  .section {
+    padding: 64px 24px;
+  }
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>3D Welcome Cluster Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{ --ink:#0D1B1E; --parchment:#F2EAD8; --koi:#E2622D; --jade:#3A6B5C; }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%; background:var(--ink); overflow:hidden; font-family:'Plus Jakarta Sans', sans-serif;}
+
+  .bg-grid{
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(rgba(242,234,216,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(242,234,216,0.04) 1px, transparent 1px);
+    background-size:48px 48px;
+  }
+
+  #scene{
+    position:fixed; inset:0;
+    perspective:1400px; perspective-origin:50% 40%;
+  }
+  #cluster{
+    position:absolute; inset:0; transform-style:preserve-3d;
+    transition:opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  .float-card{
+    position:absolute; border-radius:10px; overflow:hidden;
+    transform-style:preserve-3d; opacity:0;
+    box-shadow:0 40px 80px -20px rgba(0,0,0,0.7);
+    will-change:transform, opacity;
+  }
+  .float-card .fill{position:absolute; inset:0; background-size:cover; background-position:center;}
+
+  /* top toggle nav */
+  .toggle-nav{
+    position:fixed; top:36px; left:0; right:0; display:flex; justify-content:center; gap:14px;
+    font-family:'Plus Jakarta Sans', sans-serif; font-size:15px; z-index:10;
+  }
+  .toggle-nav span:first-child{color:var(--parchment); font-weight:600;}
+  .toggle-nav span:last-child{color:rgba(242,234,216,0.35);}
+  .toggle-dot{width:5px; height:5px; border-radius:50%; background:rgba(242,234,216,0.4); align-self:center;}
+
+  /* vertical corner label */
+  .corner-label{
+    position:fixed; bottom:28px; left:22px; z-index:10;
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:rgba(242,234,216,0.45);
+    writing-mode:vertical-rl; transform:rotate(180deg); letter-spacing:0.08em;
+    display:flex; align-items:center; gap:10px;
+  }
+  .corner-label .dot{width:4px; height:4px; border-radius:50%; background:rgba(242,234,216,0.35);}
+
+  #hero{
+    position:fixed; inset:0; display:flex; flex-direction:column; align-items:flex-start; justify-content:center;
+    padding:0 64px; opacity:0; pointer-events:none; z-index:5;
+  }
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--koi); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:18px;}
+  h1{font-family:'Fraunces', serif; font-weight:500; font-size:clamp(40px,7vw,78px); color:var(--parchment); line-height:1.02;}
+  h1 em{font-style:italic; color:rgba(242,234,216,0.55); font-weight:300;}
+
+  .replay{
+    position:fixed; bottom:28px; right:32px; font-family:'IBM Plex Mono', monospace; font-size:12px;
+    color:rgba(242,234,216,0.5); background:none; border:1px solid rgba(242,234,216,0.25);
+    padding:10px 18px; border-radius:20px; cursor:pointer; z-index:20;
+  }
+  .replay:hover{color:var(--parchment); border-color:var(--parchment);}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<div class="toggle-nav"><span>spiral</span><span class="toggle-dot"></span><span>list</span></div>
+<div class="corner-label"><span>2026</span><span class="dot"></span><span>show</span></div>
+
+<div id="scene"><div id="cluster"></div></div>
+
+<div id="hero">
+  <div class="eyebrow">Dallas, Texas</div>
+  <h1>Sameeraa<br><em>Kandalgaonkar</em></h1>
+</div>
+
+<button class="replay" id="replayBtn">↻ Replay intro</button>
+
+<script>
+const photos = [
+  {bg:"url('./assets/nature1.jpeg')"},
+  {bg:"url('./assets/nature2.jpeg')"},
+  {bg:"url('./assets/nature3.jpeg')"},
+  {bg:"url('./assets/nature4.jpeg')"},
+  {bg:"url('./assets/nature5.jpeg')"},
+  {bg:"url('./assets/nature6.jpeg')"},
+  {bg:"url('./assets/nature7.jpeg')"},
+  {bg:"url('./assets/nature8.jpeg')"},
+];
+
+// Messy physical-stack layout: cards land loosely overlapping near center,
+// like a pile of photos dropped on a desk — more spread than a tight stack,
+// but still clearly a cluster (not scattered across the whole screen).
+const layout = [
+  {x:40, y:38, w:220, h:180, z:10,  rx:2,  ry:-3, rot:-16},
+  {x:57, y:34, w:220, h:180, z:20,  rx:-1, ry:2,  rot:11},
+  {x:36, y:52, w:220, h:180, z:30,  rx:1,  ry:-2, rot:-6},
+  {x:60, y:56, w:220, h:180, z:40,  rx:-2, ry:1,  rot:18},
+  {x:47, y:60, w:220, h:180, z:50,  rx:2,  ry:3,  rot:-24},
+  {x:53, y:40, w:220, h:180, z:60,  rx:-1, ry:-2, rot:7},
+  {x:42, y:46, w:220, h:180, z:70,  rx:1,  ry:1,  rot:-10},
+  {x:58, y:47, w:220, h:180, z:80,  rx:0,  ry:0,  rot:4},
+];
+
+const cluster = document.getElementById('cluster');
+const hero = document.getElementById('hero');
+let cards = [];
+
+function buildCards(){
+  cluster.innerHTML = '';
+  cards = layout.map((pos, i) => {
+    const el = document.createElement('div');
+    el.className = 'float-card';
+    el.style.left = `calc(${pos.x}% - ${pos.w/2}px)`;
+    el.style.top = `calc(${pos.y}% - ${pos.h/2}px)`;
+    el.style.width = pos.w + 'px';
+    el.style.height = pos.h + 'px';
+    const fill = document.createElement('div');
+    fill.className = 'fill';
+    fill.style.background = photos[i % photos.length].bg;
+    el.appendChild(fill);
+    cluster.appendChild(el);
+    return {el, pos};
+  });
+}
+
+function runIntro(){
+  buildCards();
+  hero.style.opacity = '0';
+  cluster.style.opacity = '1';
+  cluster.style.transform = 'none';
+
+  // Each card flies in from a different direction (top, bottom, left, right, corners)
+  // instead of all dropping from above — like they're being tossed onto the pile
+  // from all around, landing in the same overlapping stack near center.
+  const entryDirections = [
+    {x:0,   y:-260}, // top
+    {x:260, y:0},     // right
+    {x:0,   y:260},   // bottom
+    {x:-260,y:0},     // left
+    {x:200, y:-200},  // top-right
+    {x:200, y:200},   // bottom-right
+    {x:-200,y:200},   // bottom-left
+    {x:-200,y:-200},  // top-left
+  ];
+
+  cards.forEach(({el, pos}, i) => {
+    const dir = entryDirections[i % entryDirections.length];
+    const entryRot = (Math.random()*140 - 70).toFixed(1); // tumble in with extra spin
+    el.style.transform = `translate(${dir.x}px, ${dir.y}px) rotate(${entryRot}deg) scale(0.5)`;
+    el.style.opacity = '0';
+    el.style.zIndex = i;
+    requestAnimationFrame(()=>{
+      el.style.transition = `transform 0.7s cubic-bezier(.2,.9,.3,1.05) ${i*160}ms, opacity 0.4s ease ${i*160}ms`;
+      el.style.transform = `translate(0,0) rotate(${pos.rot}deg) scale(1)`;
+      el.style.opacity = '1';
+    });
+  });
+
+  // tiny ambient settle — the pile isn't perfectly still
+  setTimeout(()=>{
+    cards.forEach(({el, pos}, i)=>{
+      el.style.transition = 'transform 2.4s ease-in-out';
+      el.style.transform = `translateY(${i%2===0?-2:2}px) rotate(${pos.rot + (i%2===0?0.6:-0.6)}deg) scale(1)`;
+    });
+  }, cards.length*160 + 700);
+
+  // pile lifts and fades as hero fades in
+  setTimeout(()=>{
+    cluster.style.transition = 'transform 0.9s cubic-bezier(.4,0,.2,1), opacity 0.9s ease';
+    cluster.style.transform = 'translateY(-50px) scale(0.94)';
+    cluster.style.opacity = '0';
+    hero.style.transition = 'opacity 1s ease 0.3s';
+    hero.style.opacity = '1';
+  }, cards.length*160 + 1700);
+}
+
+runIntro();
+document.getElementById('replayBtn').addEventListener('click', runIntro);
+</script>
+
+</body>
+</html>

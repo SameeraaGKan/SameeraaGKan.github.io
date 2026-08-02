@@ -1,0 +1,42 @@
+.role-card {
+  background: rgba(242, 234, 216, 0.08);
+  border: 1px solid rgba(242, 234, 216, 0.14);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 6px;
+  padding: 30px;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s ease;
+}
+
+.role-card:hover {
+  transform: translateY(-6px);
+  background: rgba(242, 234, 216, 0.12);
+}
+
+.role-period {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.role-card h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-cream);
+  margin: 8px 0 2px;
+}
+
+.role-org {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.role-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(242, 234, 216, 0.8);
+  margin-top: 14px;
+}

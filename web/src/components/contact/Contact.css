@@ -1,0 +1,27 @@
+.contact-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(36px, 6vw, 64px);
+  max-width: 640px;
+  line-height: 1.1;
+}
+
+.contact-links {
+  display: flex;
+  gap: 32px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.contact-links a {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  border-bottom: 1px solid rgba(242, 234, 216, 0.3);
+  padding-bottom: 4px;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.contact-links a:hover {
+  border-color: var(--koi);
+  color: var(--koi);
+}

@@ -1,0 +1,24 @@
+.skill-group {
+  min-width: 0;
+}
+
+.skill-group-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--jade);
+  margin-bottom: 16px;
+}
+
+.skill-tag-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.skill-tag-col .tag {
+  margin-top: 0;
+}

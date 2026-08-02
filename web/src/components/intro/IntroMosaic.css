@@ -1,0 +1,60 @@
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: var(--ink);
+  overflow: hidden;
+}
+
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(242, 234, 216, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242, 234, 216, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.intro-mosaic {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  grid-auto-rows: 38px;
+  gap: 4px;
+  padding: 4px;
+}
+
+.mosaic-cell {
+  position: relative;
+  border-radius: 2px;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.mosaic-cell .fill {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.intro-skip {
+  position: absolute;
+  bottom: 28px;
+  right: 32px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: rgba(242, 234, 216, 0.5);
+  background: none;
+  border: 1px solid rgba(242, 234, 216, 0.25);
+  padding: 10px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.intro-skip:hover {
+  color: var(--text-cream);
+  border-color: var(--text-cream);
+}

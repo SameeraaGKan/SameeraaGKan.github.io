@@ -1,0 +1,99 @@
+.section-jade {
+  background: var(--jade-deep);
+  color: var(--text-cream);
+}
+
+.jade-title {
+  color: var(--text-cream);
+}
+
+.role-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-bottom: 40px;
+}
+
+.award-row {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  background: rgba(242, 234, 216, 0.08);
+  border: 1px solid rgba(242, 234, 216, 0.14);
+  border-radius: 6px;
+  padding: 24px 28px;
+  margin-bottom: 32px;
+}
+
+.award-badge {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--koi);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.award-row h4 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text-cream);
+}
+
+.award-row p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(242, 234, 216, 0.8);
+  margin-bottom: 6px;
+}
+
+.award-issuer {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.leadership-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.leadership-card {
+  background: rgba(242, 234, 216, 0.08);
+  border: 1px solid rgba(242, 234, 216, 0.14);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 6px;
+  padding: 30px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--text-cream);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s ease;
+}
+
+.leadership-card:hover {
+  transform: translateY(-6px);
+  background: rgba(242, 234, 216, 0.12);
+}
+
+@media (max-width: 800px) {
+  .role-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .award-row {
+    flex-direction: column;
+  }
+
+  .leadership-grid {
+    grid-template-columns: 1fr;
+  }
+}

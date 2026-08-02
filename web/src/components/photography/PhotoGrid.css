@@ -1,0 +1,47 @@
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.photo-tile {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+}
+
+.photo-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.photo-tile:hover img {
+  transform: scale(1.06);
+}
+
+.photo-tile figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 14px 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-cream);
+  background: linear-gradient(to top, rgba(13, 27, 30, 0.85), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.photo-tile:hover figcaption {
+  opacity: 1;
+}
+
+@media (max-width: 800px) {
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,0 +1,20 @@
+:root {
+  --ink: #0d1b1e;
+  --ink-2: #122528;
+  --parchment: #f2ead8;
+  --parchment-dim: #e6dcc4;
+  --koi: #e2622d;
+  --koi-bright: #f27343;
+  --jade: #3a6b5c;
+  --jade-deep: #12281f;
+  --text-dark: #14231f;
+  --text-cream: #f2ead8;
+  --text-muted: rgba(242, 234, 216, 0.6);
+
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --container-max: 1120px;
+}
