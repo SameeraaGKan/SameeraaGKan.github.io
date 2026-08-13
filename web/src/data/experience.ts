@@ -68,7 +68,7 @@ export const roles: Role[] = [
     id: 'wwc',
     org: 'Women Who Compute',
     title: 'UX Designer',
-    period: 'Jan 2025 — Present',
+    period: 'Jan 2025 — Fall 2025',
     description:
       "Designs promotional materials and event graphics in Figma, maintaining a consistent brand identity across the club's digital and print presence.",
   },
