@@ -8,7 +8,7 @@ export function Writing() {
       <div className="section-inner">
         <div className="section-head">
           <span className="section-tag">Writing</span>
-          <RevealHeading className="section-title">Interesting readings.</RevealHeading>
+          <RevealHeading className="section-title">Interesting readings..</RevealHeading>
         </div>
         <PostReveal post={featuredPost} />
       </div>
